@@ -1,0 +1,50 @@
+package egovframework.itman.depart.model.service.interfaces;
+
+
+import egovframework.itman.depart.dto.DepartDto;
+import egovframework.itman.depart.model.entity.Depart;
+import egovframework.itman.depart.model.repository.DepartRepository;
+import lombok.AllArgsConstructor;
+import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@AllArgsConstructor
+@Service
+public class DepartServiceImp extends EgovAbstractMapper implements DepartService {
+
+    @Autowired
+    private final DepartRepository repository;
+
+    //TODO : 회원 인증, 그룹 인증 권한 인증
+
+    @Transactional
+    @Override
+    public DepartDto.Response insert(DepartDto.Request dto) {
+        return repository.save(DepartDto.toEntity(dto)).toDto();
+    }
+
+    @Override
+    public Page<DepartDto.Response> read(Pageable pageRequest) {
+        return repository.findAllByDelFalse(pageRequest).map(Depart::toDto);
+    }
+
+    @Transactional
+    @Override
+    public DepartDto.Response update(DepartDto.Request departDto) {
+        Depart depart = repository.findByDepartSeq(departDto.getDepartSeq());
+        depart.change(departDto);
+        return DepartDto.Response.from(depart);
+    }
+
+    @Transactional
+    @Override
+    public boolean delete(DepartDto.Request departDto) {
+        return repository.updateDelByDepartSeq(departDto.getDepartSeq(), true) == 1;
+    }
+
+}
