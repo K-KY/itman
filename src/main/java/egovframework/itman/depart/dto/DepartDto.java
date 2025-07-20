@@ -13,6 +13,7 @@ public class DepartDto {
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
     public static class Request {
         private int departSeq;
         private String departName;
