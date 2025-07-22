@@ -1,9 +1,10 @@
-package egovframework.itman.depart.model.service.interfaces;
+package egovframework.itman.depart.model.service;
 
 
 import egovframework.itman.depart.dto.DepartDto;
 import egovframework.itman.depart.model.entity.Depart;
 import egovframework.itman.depart.model.repository.DepartRepository;
+import egovframework.itman.depart.model.service.interfaces.DepartService;
 import lombok.AllArgsConstructor;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
 @Service
-public class DepartServiceImp extends EgovAbstractMapper implements DepartService {
+public class DepartServiceImpl extends EgovAbstractMapper implements DepartService {
 
     @Autowired
     private final DepartRepository repository;
