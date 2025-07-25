@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import java.util.Arrays;
 
 /**
@@ -29,15 +30,15 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
-	 //Http Methpd : Get 인증예외 List
+
+    //Http Methpd : Get 인증예외 List
     private String[] AUTH_GET_WHITELIST = {
             "/**",
             "/employees",
-    		"/mainPage", //메인 화면 리스트 조회
-    		"/board", // 게시판 목록조회
-    		"/board/{bbsId}/{nttId}", // 게시물 상세조회
-    		"/boardFileAtch/{bbsId}", //게시판 파일 첨부가능 여부 조회
+            "/mainPage", //메인 화면 리스트 조회
+            "/board", // 게시판 목록조회
+            "/board/{bbsId}/{nttId}", // 게시물 상세조회
+            "/boardFileAtch/{bbsId}", //게시판 파일 첨부가능 여부 조회
             "/schedule/daily", //일별 일정 조회
             "/schedule/week", //주간 일정 조회
             "/schedule/{schdulId}", //일정 상세조회
@@ -48,22 +49,23 @@ public class SecurityConfig {
     private String[] AUTH_WHITELIST = {
             "/**",
             "/employees",
-    		"/",
+            "/",
             "/login/**",
             "/auth/login-jwt",//JWT 로그인
             "/auth/login",//일반 로그인
             "/file", //파일 다운로드
-            
+
             /* swagger*/
             "/v3/api-docs/**",
             "/swagger-resources",
             "/swagger-resources/**",
             "/swagger-ui.html",
             "/swagger-ui/**",
-            
+
     };
     private static final String[] ORIGINS_WHITELIST = {
             "http://localhost:3000",
+            "http://localhost:5173",
             "*"
     };
 
@@ -77,16 +79,17 @@ public class SecurityConfig {
     protected CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD","POST","GET","DELETE","PUT","PATCH"));
-        configuration.setAllowedOrigins(Arrays.asList(ORIGINS_WHITELIST));
+        configuration.setAllowedOriginPatterns(Arrays.asList(ORIGINS_WHITELIST));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "POST", "GET", "DELETE", "PUT", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
+        configuration.setAllowCredentials(true); // 쿠키 등 자격정보 포함 허용
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+
     }
+
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -94,10 +97,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(AUTH_WHITELIST).permitAll()
-                        .antMatchers(HttpMethod.GET,AUTH_GET_WHITELIST).permitAll()
+                        .antMatchers(HttpMethod.GET, AUTH_GET_WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 ).sessionManagement((sessionManagement) ->
-                    sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .cors().and()
                 .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class)
