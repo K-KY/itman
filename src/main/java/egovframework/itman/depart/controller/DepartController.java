@@ -40,6 +40,9 @@ public class DepartController {
      */
     @PostMapping
     public DepartDto.Response insert(@RequestBody DepartDto.Request departDto) {
+        String departName = departDto.getDepartName();
+        System.out.println("departName = " + departName);
+
         System.out.println("DepartController.insert");
         DepartDto.Response response = departService.insert(departDto);
         return response;
@@ -63,8 +66,18 @@ public class DepartController {
      */
     @GetMapping
     public Page<DepartDto.Response> selectDepart(int page, int size) {
-        Pageable pageRequest = PageRequest.of(page, size, Sort.by("departName").descending());
+        Pageable pageRequest = PageRequest.of(page, size, Sort.by("departSeq").descending());
         return departService.read(pageRequest);
+    }
+
+    @GetMapping("/count")
+    public Long departCount() {
+        return departService.countAll();
+    }
+
+    @GetMapping("/count/{del}")
+    public Long departCount(@PathVariable boolean del) {
+        return departService.count(del);
     }
 
     @PatchMapping

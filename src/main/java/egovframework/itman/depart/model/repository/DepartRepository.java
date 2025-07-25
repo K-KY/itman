@@ -22,4 +22,5 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     Integer updateDelByDepartSeq(@Param("seq") Integer departSeq, @Param("del") Boolean del);
 
 
+    Long countDepartByDel(boolean del);
 }

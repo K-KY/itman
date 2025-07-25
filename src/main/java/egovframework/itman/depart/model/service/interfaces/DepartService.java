@@ -12,4 +12,8 @@ public interface DepartService {
     DepartDto.Response update(DepartDto.Request departDto);
 
     boolean delete(DepartDto.Request departDto);
+
+    Long countAll();
+
+    Long count(boolean del);
 }
