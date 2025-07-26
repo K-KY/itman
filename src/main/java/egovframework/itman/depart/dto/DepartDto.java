@@ -17,6 +17,7 @@ public class DepartDto {
     public static class Request {
         private int departSeq;
         private String departName;
+        private String description;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }
@@ -26,6 +27,7 @@ public class DepartDto {
     public static class Response {
         private int departSeq;
         private String departName;
+        private String description;
         private boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
@@ -34,6 +36,7 @@ public class DepartDto {
             return Response.builder()
                     .departSeq(depart.getDepartSeq())
                     .departName(depart.getDepartName())
+                    .description(depart.getDescription())
                     .createdDate(depart.getCreatedDate())
                     .updatedDate(depart.getLastModifiedDate())
                     .build();
@@ -45,6 +48,6 @@ public class DepartDto {
     }
 
     public static Depart toEntity(DepartDto.Request request) {
-        return new Depart(request);
+        return Depart.from(request);
     }
 }
