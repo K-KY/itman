@@ -18,9 +18,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Depart extends BaseTimeEntity {
 
-    public Depart(DepartDto.Request request) {
+    protected Depart(DepartDto.Request request) {
         this.departName = request.getDepartName();
         this.departSeq = request.getDepartSeq();
+        this.description = request.getDescription();
     }
 
     @Id
@@ -34,10 +35,14 @@ public class Depart extends BaseTimeEntity {
     @Column(name = "del", nullable = false)
     private boolean del = false;
 
+    @Column(name = "description")
+    private String description;
+
     public DepartDto.Response toDto() {
         return DepartDto.Response.builder()
                 .departSeq(departSeq)
                 .departName(departName)
+                .description(description)
                 .del(del)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate()).build();
