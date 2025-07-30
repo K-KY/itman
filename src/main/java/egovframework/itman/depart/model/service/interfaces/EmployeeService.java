@@ -13,4 +13,7 @@ public interface EmployeeService {
 
     boolean delete(Integer empSeq);
 
+    Long count(boolean del);
+
+    Long count();
 }

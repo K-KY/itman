@@ -41,4 +41,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean delete(Integer empSeq) {
         return employeeRepository.updateDelByEmpSeq(empSeq, true) == 1;
     }
+
+    @Override
+    public Long count(boolean del) {
+        return employeeRepository.countDepartByDelIs(del);
+    }
+
+    @Override
+    public Long count() {
+        return employeeRepository.count();
+    }
 }

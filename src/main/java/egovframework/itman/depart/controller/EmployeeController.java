@@ -17,8 +17,7 @@ public class EmployeeController {
     @GetMapping
     public Page<EmployeeDto.Response> read(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
-        Page<EmployeeDto.Response> read = employeeService.read(pageRequest);
-        return read;
+        return employeeService.read(pageRequest);
     }
 
     @PostMapping
@@ -36,4 +35,13 @@ public class EmployeeController {
         return employeeService.delete(request.getEmpSeq());
     }
 
+    @GetMapping("/count/{del}")
+    public Long count(@PathVariable boolean del) {
+        return employeeService.count(del);
+    }
+
+    @GetMapping("/count")
+    public Long count() {
+        return employeeService.count();
+    }
 }
