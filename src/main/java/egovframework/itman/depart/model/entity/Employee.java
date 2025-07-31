@@ -28,6 +28,15 @@ public class Employee extends BaseTimeEntity {
     @Column
     private String empName;
 
+    @Column
+    private String empNum;
+
+    @Column
+    private String empPhone;
+
+    @Column(name = "emp_email")
+    private String empEmail;
+
     @JoinColumn(name = "manager_seq", nullable = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference//순환참조 방지
@@ -52,6 +61,9 @@ public class Employee extends BaseTimeEntity {
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
                 .empName(empName)
+                .empNum(empNum)
+                .empPhone(empPhone)
+                .empEmail(empEmail)
                 .departDto(depart.toDto())
                 .manager(toDto(manager))
                 .del(del)
@@ -68,6 +80,9 @@ public class Employee extends BaseTimeEntity {
         return EmployeeDto.Response.builder()
                 .empSeq(manager.getEmpSeq())
                 .empName(manager.getEmpName())
+                .empNum(manager.getEmpNum())
+                .empPhone(manager.getEmpPhone())
+                .empEmail(manager.getEmpEmail())
                 .departDto(manager.getDepart().toDto())
                 .del(manager.getDel())
                 .createdDate(manager.getCreatedDate())
@@ -83,6 +98,9 @@ public class Employee extends BaseTimeEntity {
             return Employee.builder()
                     .empSeq(request.getEmpSeq())
                     .empName(request.getEmpName())
+                    .empPhone(request.getEmpPhone())
+                    .empEmail(request.getEmpEmail())
+                    .empNum(request.getEmpNum())
                     .depart(Depart.from(request.getDepartDto()))
                     .del(request.getDel() != null && request.getDel())
                     .job(null)
@@ -95,6 +113,9 @@ public class Employee extends BaseTimeEntity {
         return Employee.builder()
                 .empSeq(request.getEmpSeq())
                 .empName(request.getEmpName())
+                .empNum(request.getEmpNum())
+                .empPhone(request.getEmpPhone())
+                .empEmail(request.getEmpEmail())
                 .depart(Depart.from(request.getDepartDto()))
                 .manager(build)
                 .del(request.getDel() != null && request.getDel())
@@ -104,20 +125,10 @@ public class Employee extends BaseTimeEntity {
 
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "empSeq=" + empSeq +
-                ", empName='" + empName + '\'' +
-                ", manager=" + manager +
-                ", depart=" + depart +
-                ", job=" + job +
-                ", position=" + position +
-                ", del=" + del +
-                '}';
-    }
-
     public void change(EmployeeDto.Request request) {
+        this.empEmail = request.getEmpEmail();
+        this.empNum = request.getEmpNum();
+        this.empPhone = request.getEmpPhone();
         this.empName = request.getEmpName();
         this.depart = Depart.from(request.getDepartDto());
         this.manager = from(request);

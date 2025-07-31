@@ -15,6 +15,9 @@ public class EmployeeDto {
     public static class Request {
         private int empSeq;
         private String empName;
+        private String empPhone;
+        private String empEmail;
+        private String empNum;
         private DepartDto.Request departDto;
         private Request manager;
         //직무 position
@@ -31,6 +34,9 @@ public class EmployeeDto {
         private int empSeq;
         private boolean del;
         private String empName;
+        private String empNum;
+        private String empPhone;
+        private String empEmail;
         private DepartDto.Response departDto;
         private Response manager;
         private LocalDateTime createdDate;
