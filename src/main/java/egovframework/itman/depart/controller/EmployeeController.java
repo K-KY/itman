@@ -2,6 +2,7 @@ package egovframework.itman.depart.controller;
 
 import egovframework.itman.depart.dto.EmployeeDto;
 import egovframework.itman.depart.model.service.interfaces.EmployeeService;
+import egovframework.itman.util.dto.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,12 @@ public class EmployeeController {
     @GetMapping
     public Page<EmployeeDto.Response> read(int page, int size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
+        return employeeService.read(pageRequest);
+    }
+
+    @GetMapping("sort")
+    public Page<EmployeeDto.Response> readSort(int page, int size, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
         return employeeService.read(pageRequest);
     }
 
