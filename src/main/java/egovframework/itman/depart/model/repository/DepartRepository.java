@@ -11,10 +11,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DepartRepository extends JpaRepository<Depart, Long> {
+    //전체 조회
     Depart findByDepartSeq(Integer departSeq);
 
+    //del이 false인 행만 조회
     Page<Depart> findAllByDelFalse(Pageable pageable);
 
+    //departSeq가 일치하는 행 조회
     Depart findByDepartSeqAndDelIsFalse(Integer departSeq);
 
     @Modifying
