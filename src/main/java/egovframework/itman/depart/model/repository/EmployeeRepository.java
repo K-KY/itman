@@ -10,11 +10,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
-
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    Page<Employee> findAllByDelFalse(Pageable pageable);
+    Page<Employee> findAll(Pageable pageable);
 
+    Page<Employee> findAllByDelFalse(Pageable pageable);
 
     Employee findByEmpSeqAndDelFalse(Integer empSeq);
 

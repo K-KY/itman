@@ -2,6 +2,7 @@ package egovframework.itman.depart.controller;
 
 import egovframework.itman.depart.dto.DepartDto;
 import egovframework.itman.depart.model.service.interfaces.DepartService;
+import egovframework.itman.util.dto.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,9 +60,16 @@ public class DepartController {
      * </tr>
      * </Table>
      */
+    @Deprecated
     @GetMapping
     public Page<DepartDto.Response> selectDepart(int page, int size) {
         Pageable pageRequest = PageRequest.of(page - 1, size, Sort.by("departSeq").descending());
+        return departService.read(pageRequest);
+    }
+
+    @GetMapping("/sort")
+    public Page<DepartDto.Response> selectDepart(int page, int size, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page, size, sort.getSorts());
         return departService.read(pageRequest);
     }
 
