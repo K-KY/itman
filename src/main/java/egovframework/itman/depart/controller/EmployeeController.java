@@ -21,6 +21,34 @@ public class EmployeeController {
         return employeeService.read(pageRequest);
     }
 
+    /**
+     * <table>
+     *     <tr>
+     *         <th>
+     *             page
+     *         </th>
+     *         <th>
+     *             size
+     *         </th>
+     *         <th>
+     *             sort
+     *         </th>
+     *     </tr>
+     *     <tr>
+     *         <td>
+     *             int
+     *         </td>
+     *         <td>
+     *             int
+     *         </td>
+     *         <td>
+     *             String(ASC, DESC) <br>
+     *             , String(columns)
+     *         </td>
+     *     </tr>
+     * </table>
+     * */
+
     @GetMapping("sort")
     public Page<EmployeeDto.Response> readSort(int page, int size, SortDto sort) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
