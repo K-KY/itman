@@ -31,16 +31,6 @@ public class DepartDto {
         private boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
-
-        public static Response from(Depart depart) {
-            return Response.builder()
-                    .departSeq(depart.getDepartSeq())
-                    .departName(depart.getDepartName())
-                    .description(depart.getDescription())
-                    .createdDate(depart.getCreatedDate())
-                    .updatedDate(depart.getLastModifiedDate())
-                    .build();
-        }
     }
 
     public static DepartDto.Response.ResponseBuilder getResponse() {
@@ -50,4 +40,15 @@ public class DepartDto {
     public static Depart toEntity(DepartDto.Request request) {
         return Depart.from(request);
     }
+
+    public static Response from(Depart depart) {
+        return Response.builder()
+                .departSeq(depart.getDepartSeq())
+                .departName(depart.getDepartName())
+                .description(depart.getDescription())
+                .createdDate(depart.getCreatedDate())
+                .updatedDate(depart.getLastModifiedDate())
+                .build();
+    }
+
 }
