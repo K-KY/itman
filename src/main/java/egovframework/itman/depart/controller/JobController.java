@@ -19,6 +19,6 @@ public class JobController {
 
     @PostMapping
     public JobDto.Response insert(@RequestBody JobDto.Request dto) {
-        return jobService.insert(dto);
+        return jobService.insert(dto).toDto();
     }
 }
