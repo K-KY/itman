@@ -1,12 +1,16 @@
 package egovframework.itman.depart.controller;
 
 import egovframework.itman.depart.dto.JobDto;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import egovframework.itman.depart.model.service.interfaces.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/jobs")
 public class JobController {
+
+    @Autowired
+    private JobService jobService;
 
     @GetMapping
     public String job() {
@@ -14,7 +18,7 @@ public class JobController {
     }
 
     @PostMapping
-    public JobDto.Response insert(JobDto.Request dto) {
-        return null;
+    public JobDto.Response insert(@RequestBody JobDto.Request dto) {
+        return jobService.insert(dto);
     }
 }
