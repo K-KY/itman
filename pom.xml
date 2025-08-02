@@ -53,6 +53,13 @@
 
 	<dependencies>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>6.4.4</version>
+		</dependency>
 
 		<!-- spring boot dependency start -->
 		<dependency>
@@ -521,8 +528,8 @@
 	
     <reporting>
         <outputDirectory>${basedir}/target/site</outputDirectory>
-        <plugins>
-            <plugin>
+		<plugins>
+			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>3.4.4</version>
