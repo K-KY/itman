@@ -1,6 +1,7 @@
 package egovframework.itman.depart.model.service;
 
 import egovframework.itman.depart.dto.JobDto;
+import egovframework.itman.depart.model.entity.Job;
 import egovframework.itman.depart.model.repository.JobRepository;
 import egovframework.itman.depart.model.service.interfaces.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,9 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public JobDto.Response insert(JobDto.Request dto) {
-
-        return null;
+        Job from = Job.from(dto);
+        return jobRepository.save(from).toDto();
+        //
     }
 
     @Override
