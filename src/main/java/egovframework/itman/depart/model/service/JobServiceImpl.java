@@ -16,9 +16,9 @@ public class JobServiceImpl implements JobService {
     private JobRepository jobRepository;
 
     @Override
-    public JobDto.Response insert(JobDto.Request dto) {
+    public Job insert(JobDto.Request dto) {
         Job from = Job.from(dto);
-        return jobRepository.save(from).toDto();
+        return jobRepository.save(from);
         //
     }
 

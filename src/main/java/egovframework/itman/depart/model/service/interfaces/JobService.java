@@ -2,11 +2,12 @@ package egovframework.itman.depart.model.service.interfaces;
 
 
 import egovframework.itman.depart.dto.JobDto;
+import egovframework.itman.depart.model.entity.Job;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 //TODO : 그룹 추가
 public interface JobService {
-    JobDto.Response insert(JobDto.Request dto);
+    Job insert(JobDto.Request dto);
 
     Page<JobDto.Response> read(Pageable pageRequest);
 
