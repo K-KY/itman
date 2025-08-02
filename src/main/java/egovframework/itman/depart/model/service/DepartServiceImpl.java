@@ -39,7 +39,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     public DepartDto.Response update(DepartDto.Request departDto) {
         Depart depart = repository.findByDepartSeq(departDto.getDepartSeq());
         depart.change(departDto);
-        return DepartDto.Response.from(depart);
+        return DepartDto.from(depart);
     }
 
     @Transactional
