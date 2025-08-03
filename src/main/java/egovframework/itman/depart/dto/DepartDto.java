@@ -18,6 +18,7 @@ public class DepartDto {
         private int departSeq;
         private String departName;
         private String description;
+        private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }

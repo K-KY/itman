@@ -22,6 +22,8 @@ public class Depart extends BaseTimeEntity {
         this.departName = request.getDepartName();
         this.departSeq = request.getDepartSeq();
         this.description = request.getDescription();
+        this.del = request.getDel() != null && request.getDel();
+
     }
 
     @Id
