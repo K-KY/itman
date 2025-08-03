@@ -21,11 +21,10 @@ import javax.persistence.*;
 public class Job extends BaseTimeEntity {
 
     public Job(JobDto.Request request) {
+        this.jobSeq = request.getJobSeq();
         this.jobName = request.getJobName();
         this.jobDescription = request.getJobDescription();
-        del = false;
-
-
+        del = request.getDel() != null && request.getDel();
     }
 
     @Id
