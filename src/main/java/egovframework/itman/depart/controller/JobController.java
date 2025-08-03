@@ -26,4 +26,9 @@ public class JobController {
     public JobDto.Response insert(@RequestBody JobDto.Request dto) {
         return jobService.insert(dto).toDto();
     }
+
+    @PatchMapping
+    public JobDto.Response update(@RequestBody JobDto.Request dto) {
+        return jobService.update(dto).toDto();
+    }
 }

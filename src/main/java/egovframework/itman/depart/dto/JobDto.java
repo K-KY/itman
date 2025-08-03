@@ -18,9 +18,11 @@ public class JobDto {
         private Integer jobSeq;
         private String jobName;
         private String jobDescription;
-        private boolean del;
+        private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
+
+
     }
 
     @Getter
@@ -31,7 +33,7 @@ public class JobDto {
         private Integer jobSeq;
         private String jobName;
         private String jobDescription;
-        private boolean del;
+        private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }

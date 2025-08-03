@@ -11,7 +11,7 @@ public interface JobService {
 
     Page<JobDto.Response> read(Pageable pageRequest);
 
-    JobDto.Response update(JobDto.Request dto);
+    Job update(JobDto.Request dto);
 
     boolean delete(JobDto.Request dto);
 

@@ -28,8 +28,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobDto.Response update(JobDto.Request dto) {
-        return null;
+    public Job update(JobDto.Request dto) {
+        if (dto.getJobSeq() == null) {
+            throw new IllegalArgumentException("수정할 게시물을 찾지 못했습니다.");
+        }
+        return jobRepository.save(Job.from(dto));
     }
 
     @Override
