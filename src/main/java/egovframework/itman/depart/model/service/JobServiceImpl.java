@@ -24,7 +24,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Page<JobDto.Response> read(Pageable pageRequest) {
-        return null;
+        return jobRepository.findAllByDelFalse(pageRequest).map(Job::toDto);
     }
 
     @Override

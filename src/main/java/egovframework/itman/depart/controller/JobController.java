@@ -2,7 +2,10 @@ package egovframework.itman.depart.controller;
 
 import egovframework.itman.depart.dto.JobDto;
 import egovframework.itman.depart.model.service.interfaces.JobService;
+import egovframework.itman.util.dto.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,8 +16,10 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public String job() {
-        return "test";
+    public Page<JobDto.Response> read(int page, int size, SortDto sort) {
+        System.out.println("sort.getSorts() = " + sort.getSorts());
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
+        return jobService.read(pageRequest);
     }
 
     @PostMapping
