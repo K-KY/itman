@@ -12,6 +12,9 @@ public class SortDto {
     private String param;
 
     public Sort getSorts() {
+        if (param == null || sorts == null) {
+            return Sort.unsorted();
+        }
         if (sorts.equals(Sorts.ASC)) {
             return Sort.by(param).ascending();
         }
