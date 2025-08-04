@@ -21,7 +21,7 @@ public class EmployeeDto {
         private DepartDto.Request departDto;
         private Request manager;
         //직무 position
-        //직급 job
+        private JobDto.Request job;
         private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
@@ -38,6 +38,7 @@ public class EmployeeDto {
         private String empPhone;
         private String empEmail;
         private DepartDto.Response departDto;
+        private JobDto.Response job;
         private Response manager;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
