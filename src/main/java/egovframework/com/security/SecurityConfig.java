@@ -45,6 +45,9 @@ public class SecurityConfig {
             "/schedule/week", //주간 일정 조회
             "/schedule/{schdulId}", //일정 상세조회
             "/image", //갤러리 이미지보기
+
+            "/h2-console/**"
+
     };
 
     // 인증 예외 List
@@ -61,6 +64,9 @@ public class SecurityConfig {
             "/swagger-resources/**",
             "/swagger-ui.html",
             "/swagger-ui/**",
+
+            /*h2*/
+            "/h2-console/**"
 
     };
     private static final String[] ORIGINS_WHITELIST = {
