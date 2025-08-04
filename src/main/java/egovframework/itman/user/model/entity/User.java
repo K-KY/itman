@@ -22,6 +22,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userSeq;
     private String userId;
     private String userPassword;
     private String userName;
