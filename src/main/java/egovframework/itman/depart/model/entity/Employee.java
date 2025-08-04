@@ -58,6 +58,19 @@ public class Employee extends BaseTimeEntity {
     private Boolean del = false;
 
     public EmployeeDto.Response toDto() {
+        if (depart == null) {
+            return EmployeeDto.Response.builder()
+                    .empSeq(empSeq)
+                    .empName(empName)
+                    .empNum(empNum)
+                    .empPhone(empPhone)
+                    .empEmail(empEmail)
+                    .manager(toDto(manager))
+                    .del(del)
+                    .createdDate(super.getCreatedDate())
+                    .updatedDate(super.getLastModifiedDate())
+                    .build();
+        }
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
                 .empName(empName)
