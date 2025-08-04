@@ -15,8 +15,8 @@ public class DepartDto {
     @NoArgsConstructor
     @Builder
     public static class Request {
-        private int departSeq;
-        private String departName;
+        private int seq;
+        private String name;
         private String description;
         private Boolean del;
         private LocalDateTime createdDate;
@@ -26,8 +26,8 @@ public class DepartDto {
     @Getter
     @Builder
     public static class Response {
-        private int departSeq;
-        private String departName;
+        private int seq;
+        private String name;
         private String description;
         private boolean del;
         private LocalDateTime createdDate;
@@ -44,8 +44,8 @@ public class DepartDto {
 
     public static Response from(Depart depart) {
         return Response.builder()
-                .departSeq(depart.getDepartSeq())
-                .departName(depart.getDepartName())
+                .seq(depart.getDepartSeq())
+                .name(depart.getDepartName())
                 .description(depart.getDescription())
                 .createdDate(depart.getCreatedDate())
                 .updatedDate(depart.getLastModifiedDate())

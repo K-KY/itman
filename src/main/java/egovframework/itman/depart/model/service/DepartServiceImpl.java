@@ -37,7 +37,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     @Transactional
     @Override
     public DepartDto.Response update(DepartDto.Request departDto) {
-        Depart depart = repository.findByDepartSeq(departDto.getDepartSeq());
+        Depart depart = repository.findByDepartSeq(departDto.getSeq());
         depart.change(departDto);
         return DepartDto.from(depart);
     }
@@ -45,7 +45,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     @Transactional
     @Override
     public boolean delete(DepartDto.Request departDto) {
-        return repository.updateDelByDepartSeq(departDto.getDepartSeq(), true) == 1;
+        return repository.updateDelByDepartSeq(departDto.getSeq(), true) == 1;
     }
 
     @Override

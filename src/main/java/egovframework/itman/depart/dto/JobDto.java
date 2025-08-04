@@ -15,9 +15,9 @@ public class JobDto {
     @NoArgsConstructor
     @Builder
     public static class Request {
-        private Integer jobSeq;
-        private String jobName;
-        private String jobDescription;
+        private Integer seq;
+        private String name;
+        private String description;
         private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
@@ -30,9 +30,9 @@ public class JobDto {
     @NoArgsConstructor
     @Builder
     public static class Response {
-        private Integer jobSeq;
-        private String jobName;
-        private String jobDescription;
+        private Integer seq;
+        private String name;
+        private String description;
         private Boolean del;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
@@ -40,9 +40,9 @@ public class JobDto {
 
     public Response from(Job job) {
         return Response.builder()
-                .jobSeq(job.getJobSeq())
-                .jobName(job.getJobName())
-                .jobDescription(job.getJobDescription())
+                .seq(job.getJobSeq())
+                .name(job.getJobName())
+                .description(job.getJobDescription())
                 .del(job.isDel())
                 .createdDate(job.getCreatedDate())
                 .updatedDate(job.getLastModifiedDate())

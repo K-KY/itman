@@ -29,7 +29,7 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Job update(JobDto.Request dto) {
-        if (dto.getJobSeq() == null) {
+        if (dto.getSeq() == null) {
             throw new IllegalArgumentException("수정할 게시물을 찾지 못했습니다.");
         }
         return jobRepository.save(Job.from(dto));
@@ -42,11 +42,11 @@ public class JobServiceImpl implements JobService {
 
     @Override
     public Long countAll() {
-        return 0L;
+        return jobRepository.count();
     }
 
     @Override
     public Long count(boolean del) {
-        return 0L;
+        return jobRepository.countJobByDel(del);
     }
 }

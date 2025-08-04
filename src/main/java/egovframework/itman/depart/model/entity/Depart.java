@@ -19,8 +19,8 @@ import javax.persistence.*;
 public class Depart extends BaseTimeEntity {
 
     protected Depart(DepartDto.Request request) {
-        this.departName = request.getDepartName();
-        this.departSeq = request.getDepartSeq();
+        this.departName = request.getName();
+        this.departSeq = request.getSeq();
         this.description = request.getDescription();
         this.del = request.getDel() != null && request.getDel();
 
@@ -42,8 +42,8 @@ public class Depart extends BaseTimeEntity {
 
     public DepartDto.Response toDto() {
         return DepartDto.Response.builder()
-                .departSeq(departSeq)
-                .departName(departName)
+                .seq(departSeq)
+                .name(departName)
                 .description(description)
                 .del(del)
                 .createdDate(super.getCreatedDate())
@@ -51,7 +51,7 @@ public class Depart extends BaseTimeEntity {
     }
 
     public void change(DepartDto.Request departDto) {
-        this.departName = departDto.getDepartName();
+        this.departName = departDto.getName();
     }
 
     public static Depart from(DepartDto.Request request) {

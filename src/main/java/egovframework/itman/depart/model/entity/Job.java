@@ -21,9 +21,9 @@ import javax.persistence.*;
 public class Job extends BaseTimeEntity {
 
     public Job(JobDto.Request request) {
-        this.jobSeq = request.getJobSeq();
-        this.jobName = request.getJobName();
-        this.jobDescription = request.getJobDescription();
+        this.jobSeq = request.getSeq();
+        this.jobName = request.getName();
+        this.jobDescription = request.getDescription();
         del = request.getDel() != null && request.getDel();
     }
 
@@ -43,9 +43,9 @@ public class Job extends BaseTimeEntity {
 
     public JobDto.Response toDto() {
         return JobDto.Response.builder()
-                .jobSeq(jobSeq)
-                .jobName(jobName)
-                .jobDescription(jobDescription)
+                .seq(jobSeq)
+                .name(jobName)
+                .description(jobDescription)
                 .del(del)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate())
