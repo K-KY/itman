@@ -55,6 +55,9 @@ public class Depart extends BaseTimeEntity {
     }
 
     public static Depart from(DepartDto.Request request) {
+        if (request == null) {
+            return null;
+        }
         return new Depart(request);
     }
 
