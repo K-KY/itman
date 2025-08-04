@@ -31,4 +31,14 @@ public class JobController {
     public JobDto.Response update(@RequestBody JobDto.Request dto) {
         return jobService.update(dto).toDto();
     }
+
+    @GetMapping("/count")
+    public Long countJobs() {
+        return jobService.countAll();
+    }
+
+    @GetMapping("/count/{del}")
+    public Long countJobs(@PathVariable boolean del) {
+        return jobService.count(del);
+    }
 }
