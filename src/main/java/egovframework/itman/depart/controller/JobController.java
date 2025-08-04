@@ -17,7 +17,6 @@ public class JobController {
 
     @GetMapping
     public Page<JobDto.Response> read(int page, int size, SortDto sort) {
-        System.out.println("sort.getSorts() = " + sort.getSorts());
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
         return jobService.read(pageRequest);
     }
