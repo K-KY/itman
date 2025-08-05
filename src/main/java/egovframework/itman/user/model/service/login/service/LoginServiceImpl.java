@@ -1,0 +1,42 @@
+package egovframework.itman.user.model.service.login.service;
+
+import egovframework.itman.user.dto.UserDto;
+import egovframework.itman.user.model.entity.User;
+import egovframework.itman.user.model.service.login.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+public class LoginServiceImpl implements LoginService {
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserDto.Response signup(UserDto.Request request) {
+        if (userRepository.findByUserEmail(request.getUserEmail()).isPresent()) {
+            throw new IllegalArgumentException();
+        }
+        String password = passwordEncoder.encode(request.getUserPassword());
+        try {
+            User build = User.builder()
+                    .userName(request.getUserName())
+                    .userEmail(request.getUserEmail())
+                    .userPassword(password)
+                    .userName(request.getUserName())
+                    .del(Boolean.FALSE)
+                    .userRole("ROLE_USER")
+                    .build();
+            userRepository.save(build);
+            return UserDto.Response.from(build);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+}
