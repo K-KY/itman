@@ -45,15 +45,13 @@ public class SecurityConfig {
             "/schedule/week", //주간 일정 조회
             "/schedule/{schdulId}", //일정 상세조회
             "/image", //갤러리 이미지보기
-
-            "/h2-console/**"
-
     };
 
     // 인증 예외 List
     private String[] AUTH_WHITELIST = {
             "/",
             "/login/**",
+            "/signup/**",
             "/auth/login-jwt",//JWT 로그인
             "/auth/login",//일반 로그인
             "/file", //파일 다운로드
@@ -63,11 +61,7 @@ public class SecurityConfig {
             "/swagger-resources",
             "/swagger-resources/**",
             "/swagger-ui.html",
-            "/swagger-ui/**",
-
-            /*h2*/
-            "/h2-console/**"
-
+            "/swagger-ui/**"
     };
     private static final String[] ORIGINS_WHITELIST = {
             "http://localhost:3000",
