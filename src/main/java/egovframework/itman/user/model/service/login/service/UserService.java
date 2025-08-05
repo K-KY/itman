@@ -1,5 +1,6 @@
-package egovframework.itman.user.model.service.login;
+package egovframework.itman.user.model.service.login.service;
 
+import egovframework.itman.user.model.service.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +14,8 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-        return userRepository.findByUserId(userId);
+    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
+        return userRepository
+                .findByUserEmail(userEmail).orElseThrow(() -> new UsernameNotFoundException(userEmail));
     }
 }

@@ -10,7 +10,7 @@ public class LoginDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Request {
-        private String userId;
+        private String userEmail;
         private String userPassword;
     }
 
@@ -19,7 +19,7 @@ public class LoginDto {
     @AllArgsConstructor
     public static class Response {
         private int userSeq;
-        private String userId;
+        private String userEmail;
         private String userName;
         private String userRole;
     }
