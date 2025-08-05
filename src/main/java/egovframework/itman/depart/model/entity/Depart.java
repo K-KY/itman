@@ -52,6 +52,7 @@ public class Depart extends BaseTimeEntity {
 
     public void change(DepartDto.Request departDto) {
         this.departName = departDto.getName();
+        this.description = departDto.getDescription();
     }
 
     public static Depart from(DepartDto.Request request) {
