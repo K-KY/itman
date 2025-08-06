@@ -18,7 +18,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Depart extends BaseTimeEntity {
 
-    protected Depart(DepartDto.Request request) {
+    private Depart(DepartDto.Request request) {
         this.departName = request.getName();
         this.departSeq = request.getSeq();
         this.description = request.getDescription();
