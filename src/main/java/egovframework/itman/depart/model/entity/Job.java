@@ -20,7 +20,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Job extends BaseTimeEntity {
 
-    public Job(JobDto.Request request) {
+    private Job(JobDto.Request request) {
         this.jobSeq = request.getSeq();
         this.jobName = request.getName();
         this.jobDescription = request.getDescription();
