@@ -23,10 +23,11 @@ public class PositionController {
 
     @PostMapping
     public PositionDto.Response insert(@RequestBody PositionDto.Request dto) {
-        String name = dto.getName();
-        String description = dto.getDescription();
-        System.out.println("name = " + name);
-        System.out.println("description = " + description);
         return positionService.insert(dto).toDto();
+    }
+
+    @PatchMapping
+    public PositionDto.Response update(@RequestBody PositionDto.Request dto) {
+        return positionService.update(dto).toDto();
     }
 }

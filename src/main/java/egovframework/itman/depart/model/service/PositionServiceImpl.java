@@ -28,7 +28,10 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public Position update(PositionDto.Request dto) {
-        return null;
+        if (dto.getSeq() == null) {
+            throw new IllegalArgumentException();
+        }
+        return repository.save(Position.from(dto));
     }
 
     @Override
