@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.util.UUID;
 
 public class UserDto {
 
@@ -12,7 +16,10 @@ public class UserDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
+    @RedisHash(value = "user", timeToLive = 600)//60분
     public static class Request {
+        @Id
+        private UUID id = UUID.randomUUID();
         private String userEmail;
         private String userPassword;
         private String userName;
