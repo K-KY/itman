@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public UserDto.Response signup(UserDto.Request request) {
         if (userRepository.findByUserEmail(request.getUserEmail()).isPresent()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("이미 존재하는 이메일 입니다.");
         }
         String password = passwordEncoder.encode(request.getUserPassword());
         try {
