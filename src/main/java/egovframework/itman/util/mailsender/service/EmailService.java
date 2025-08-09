@@ -17,6 +17,9 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
+    @Value("${front.path}")
+    private String frontPath;
+
     public void sendMail(String to, String subject, String linkUrl) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
 
@@ -25,10 +28,15 @@ public class EmailService {
         helper.setSubject(subject);
         helper.setFrom(host);
         String htmlContent = "<html>" +
-                "<body>" +
-                "<h1 style='color:blue;'>이메일 제목</h1>" +
-                "<p>내용 본문입니다.</p>" +
-                "<a href='" + "http://localhost:5174/signup?token=" + linkUrl + "'>버튼</a>" +
+                "<body style='font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;'>" +
+                "<div style='background-color: white; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; " +
+                "box-shadow: 0 2px 8px rgba(0,0,0,0.1);'>" +
+                "<h1 style='color: #007BFF; margin-top: 0;'>이메일 제목</h1>" +
+                "<p style='font-size: 16px; color: #333333;'>내용 본문입니다.</p>" +
+                "<a href='" + frontPath + "signup?token=" + linkUrl + "'" +
+                " style='display: inline-block; padding: 10px 20px; color: white; background-color: #28a745; " +
+                "text-decoration: none; border-radius: 5px; font-weight: bold;'>회원가입 완료하러 가기</a>" +
+                "</div>" +
                 "</body>" +
                 "</html>";
         helper.setText(htmlContent, true); // true: HTML 사용 설정
