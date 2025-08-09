@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 /**
  * 직원
@@ -58,27 +59,15 @@ public class Employee extends BaseTimeEntity {
     private Boolean del = false;
 
     public EmployeeDto.Response toDto() {
-        if (depart == null) {
-            return EmployeeDto.Response.builder()
-                    .empSeq(empSeq)
-                    .empName(empName)
-                    .empNum(empNum)
-                    .empPhone(empPhone)
-                    .empEmail(empEmail)
-                    .manager(toDto(manager))
-                    .del(del)
-                    .createdDate(super.getCreatedDate())
-                    .updatedDate(super.getLastModifiedDate())
-                    .build();
-        }
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
                 .empName(empName)
                 .empNum(empNum)
                 .empPhone(empPhone)
                 .empEmail(empEmail)
-                .departDto(depart.toDto())
-                .manager(toDto(manager))
+                .departDto(Optional.ofNullable(depart).map(Depart::toDto).orElse(null))
+                .job(Optional.ofNullable(job).map(Job::toDto).orElse(null))
+                .manager(Optional.ofNullable(manager).map(this::toDto).orElse(null))
                 .del(del)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate())
@@ -106,6 +95,7 @@ public class Employee extends BaseTimeEntity {
     //dto를 엔티티로 변경
     public static Employee from(EmployeeDto.Request request) {
         EmployeeDto.Request manager = request.getManager();
+        System.out.println("request.getJob().getName()3 = " + request.getJob().getName());
         //manager가 null인 경우
         if (manager == null) {
             return Employee.builder()
@@ -116,7 +106,7 @@ public class Employee extends BaseTimeEntity {
                     .empNum(request.getEmpNum())
                     .depart(Depart.from(request.getDepartDto()))
                     .del(request.getDel() != null && request.getDel())
-                    .job(null)
+                    .job(Job.from(request.getJob()))
                     .position(null)
                     .build();
         }
@@ -132,7 +122,7 @@ public class Employee extends BaseTimeEntity {
                 .depart(Depart.from(request.getDepartDto()))
                 .manager(build)
                 .del(request.getDel() != null && request.getDel())
-                .job(null)
+                .job(Job.from(request.getJob()))
                 .position(null)
                 .build();
 
