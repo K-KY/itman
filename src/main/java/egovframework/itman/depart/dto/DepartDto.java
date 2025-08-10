@@ -19,6 +19,7 @@ public class DepartDto {
         private String name;
         private String description;
         private Boolean del;
+        private Boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }
@@ -30,6 +31,7 @@ public class DepartDto {
         private String name;
         private String description;
         private boolean del;
+        private boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }
@@ -47,6 +49,7 @@ public class DepartDto {
                 .seq(depart.getDepartSeq())
                 .name(depart.getDepartName())
                 .description(depart.getDescription())
+                .enabled(depart.isEnabled())
                 .createdDate(depart.getCreatedDate())
                 .updatedDate(depart.getLastModifiedDate())
                 .build();
