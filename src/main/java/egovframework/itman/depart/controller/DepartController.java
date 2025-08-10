@@ -116,6 +116,11 @@ public class DepartController {
         return departService.update(departDto);
     }
 
+    @PatchMapping("/enable")
+    public DepartDto.Response enable(@RequestBody DepartDto.Request departDto) {
+        return departService.updateEnable(departDto);
+    }
+
     @DeleteMapping
     public Boolean delete(@RequestBody DepartDto.Request departDto) {
         return departService.delete(departDto);
