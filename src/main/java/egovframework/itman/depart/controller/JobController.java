@@ -31,6 +31,11 @@ public class JobController {
         return jobService.update(dto).toDto();
     }
 
+    @PatchMapping("/enable")
+    public JobDto.Response enable(@RequestBody JobDto.Request dto) {
+        return jobService.updateEnable(dto);
+    }
+
     @GetMapping("/count")
     public Long countJobs() {
         return jobService.countAll();
