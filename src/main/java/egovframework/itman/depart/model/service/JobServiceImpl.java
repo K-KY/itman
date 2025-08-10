@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class JobServiceImpl implements JobService {
@@ -48,5 +49,14 @@ public class JobServiceImpl implements JobService {
     @Override
     public Long count(boolean del) {
         return jobRepository.countJobByDel(del);
+    }
+
+    @Override
+    @Transactional
+    public JobDto.Response updateEnable(JobDto.Request dto) {
+        Job job = jobRepository.findByJobSeq(dto.getSeq())
+                .orElseThrow(() -> new IllegalArgumentException("데이터를 찾지 못했습니다."));
+        job.disable();
+        return job.toDto();
     }
 }

@@ -19,4 +19,5 @@ public interface JobService {
 
     Long count(boolean del);
 
+    JobDto.Response updateEnable(JobDto.Request dto);
 }
