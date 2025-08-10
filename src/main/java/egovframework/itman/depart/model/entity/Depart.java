@@ -34,8 +34,13 @@ public class Depart extends BaseTimeEntity {
     @Column(name = "depart_name")
     private String departName;
 
+    //삭제상태
     @Column(name = "del", nullable = false)
     private boolean del = false;
+
+    //사용안함 상태
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = true;
 
     @Column(name = "description")
     private String description;
@@ -46,6 +51,7 @@ public class Depart extends BaseTimeEntity {
                 .name(departName)
                 .description(description)
                 .del(del)
+                .enabled(enabled)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate()).build();
     }
@@ -53,6 +59,11 @@ public class Depart extends BaseTimeEntity {
     public void change(DepartDto.Request departDto) {
         this.departName = departDto.getName();
         this.description = departDto.getDescription();
+    }
+
+    public Boolean disable() {
+        this.enabled = !enabled;
+        return enabled;
     }
 
     public static Depart from(DepartDto.Request request) {
