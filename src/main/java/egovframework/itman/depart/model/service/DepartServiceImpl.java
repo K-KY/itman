@@ -58,4 +58,12 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
         return repository.countDepartByDel(del);
     }
 
+    @Override
+    @Transactional
+    public DepartDto.Response updateEnable(DepartDto.Request departDto) {
+        Depart depart = repository.findByDepartSeq(departDto.getSeq());
+        depart.disable();
+        return depart.toDto();
+    }
+
 }
