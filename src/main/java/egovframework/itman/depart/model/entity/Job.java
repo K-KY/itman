@@ -25,6 +25,7 @@ public class Job extends BaseTimeEntity {
         this.jobName = request.getName();
         this.jobDescription = request.getDescription();
         del = request.getDel() != null && request.getDel();
+        enabled = request.getEnabled() != null && request.getEnabled();
     }
 
     @Id
@@ -41,12 +42,25 @@ public class Job extends BaseTimeEntity {
     @Column(name = "del")
     private boolean del;
 
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled = true;
+
+    public Boolean disable() {
+        this.enabled = !enabled;
+        return enabled;
+    }
+
+    public void test() {
+        jobName = "테스트";
+    }
+
     public JobDto.Response toDto() {
         return JobDto.Response.builder()
                 .seq(jobSeq)
                 .name(jobName)
                 .description(jobDescription)
                 .del(del)
+                .enabled(enabled)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate())
                 .build();

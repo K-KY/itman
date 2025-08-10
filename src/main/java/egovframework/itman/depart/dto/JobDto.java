@@ -19,6 +19,7 @@ public class JobDto {
         private String name;
         private String description;
         private Boolean del;
+        private Boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
 
@@ -34,6 +35,7 @@ public class JobDto {
         private String name;
         private String description;
         private Boolean del;
+        private Boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
     }
@@ -44,6 +46,7 @@ public class JobDto {
                 .name(job.getJobName())
                 .description(job.getJobDescription())
                 .del(job.isDel())
+                .enabled(job.isEnabled())
                 .createdDate(job.getCreatedDate())
                 .updatedDate(job.getLastModifiedDate())
                 .build();
