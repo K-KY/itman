@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,11 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
 
     @Override
     public Page<DepartDto.Response> read(Pageable pageRequest) {
+        return repository.findAllByDelFalseAndEnabledTrue(pageRequest).map(Depart::toDto);
+    }
+
+    @Override
+    public Page<DepartDto.Response> readAll(PageRequest pageRequest) {
         return repository.findAllByDelFalse(pageRequest).map(Depart::toDto);
     }
 
@@ -49,13 +55,13 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     }
 
     @Override
-    public Long countAll() {
-        return repository.count();
+    public Long countAll(boolean del) {
+        return repository.countDepartByDel(del);
     }
 
     @Override
-    public Long count(boolean del) {
-        return repository.countDepartByDel(del);
+    public Long count() {
+        return repository.countDepartByEnabledTrueAndDelFalse();
     }
 
     @Override
