@@ -6,6 +6,7 @@ import egovframework.itman.depart.model.repository.JobRepository;
 import egovframework.itman.depart.model.service.interfaces.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +24,15 @@ public class JobServiceImpl implements JobService {
         //
     }
 
+    //활성화인 게시물만 조회
     @Override
     public Page<JobDto.Response> read(Pageable pageRequest) {
+        return jobRepository.findAllByDelFalseAndEnabledTrue((pageRequest)).map(Job::toDto);
+    }
+
+    //활성/ 비활성 모두 조회
+    @Override
+    public Page<JobDto.Response> readAll(PageRequest pageRequest) {
         return jobRepository.findAllByDelFalse(pageRequest).map(Job::toDto);
     }
 
@@ -42,13 +50,13 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Long countAll() {
-        return jobRepository.count();
+    public Long countAll(boolean del) {
+        return jobRepository.countJobByDel(del);
     }
 
     @Override
-    public Long count(boolean del) {
-        return jobRepository.countJobByDel(del);
+    public Long count() {
+        return jobRepository.countJobByDelFalseAndEnabledTrue();
     }
 
     @Override
@@ -59,4 +67,5 @@ public class JobServiceImpl implements JobService {
         job.disable();
         return job.toDto();
     }
+
 }
