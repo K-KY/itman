@@ -21,6 +21,12 @@ public class JobController {
         return jobService.read(pageRequest);
     }
 
+    @GetMapping("/all")
+    public Page<JobDto.Response> readAll(int page, int size, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
+        return jobService.readAll(pageRequest);
+    }
+
     @PostMapping
     public JobDto.Response insert(@RequestBody JobDto.Request dto) {
         return jobService.insert(dto).toDto();
@@ -36,13 +42,13 @@ public class JobController {
         return jobService.updateEnable(dto);
     }
 
-    @GetMapping("/count")
-    public Long countJobs() {
-        return jobService.countAll();
-    }
-
     @GetMapping("/count/{del}")
     public Long countJobs(@PathVariable boolean del) {
-        return jobService.count(del);
+        return jobService.countAll(del);
+    }
+
+    @GetMapping("/count")
+    public Long countJobs() {
+        return jobService.count();
     }
 }
