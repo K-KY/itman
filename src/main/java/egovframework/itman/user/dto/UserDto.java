@@ -20,9 +20,11 @@ public class UserDto {
     public static class Request {
         @Id
         private UUID id = UUID.randomUUID();
+        private Integer userSeq;
         private String userEmail;
         private String userPassword;
         private String userName;
+        private Boolean del;
     }
 
     @Getter
@@ -36,15 +38,17 @@ public class UserDto {
         private String userRole;
         private Boolean del;
 
-        public static Response from(User user) {
-            return Response.builder()
-                    .userSeq(user.getUserSeq())
-                    .userEmail(user.getUserEmail())
-                    .userName(user.getUsername())
-                    .userRole(user.getUserRole())
-                    .del(user.getDel())
-                    .build();
-        }
-
     }
+
+    public static Response from(User user) {
+        return Response.builder()
+                .userSeq(user.getUserSeq())
+                .userEmail(user.getUserEmail())
+                .userName(user.getUsername())
+                .userRole(user.getUserRole())
+                .del(user.getDel())
+                .build();
+    }
+
+
 }

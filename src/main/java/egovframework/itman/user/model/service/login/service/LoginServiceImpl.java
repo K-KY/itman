@@ -33,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
                     .userRole("ROLE_USER")
                     .build();
             userRepository.save(build);
-            return UserDto.Response.from(build);
+            return UserDto.from(build);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
