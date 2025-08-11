@@ -16,7 +16,7 @@ public class UserDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    @RedisHash(value = "user", timeToLive = 600)//60분
+    @RedisHash(value = "user", timeToLive = 600)//10분
     public static class Request {
         @Id
         private UUID id = UUID.randomUUID();
