@@ -12,7 +12,11 @@ import java.util.Optional;
 public interface JobRepository extends JpaRepository<Job, Integer> {
     Page<Job> findAllByDelFalse(Pageable pageRequest);
 
+    Page<Job> findAllByDelFalseAndEnabledTrue(Pageable pageRequest);
+
     Long countJobByDel(boolean del);
 
     Optional<Job> findByJobSeq(Integer jobSeq);
+
+    Long countJobByDelFalseAndEnabledTrue();
 }
