@@ -25,7 +25,6 @@ public class Job extends BaseTimeEntity {
         this.jobName = request.getName();
         this.jobDescription = request.getDescription();
         del = request.getDel() != null && request.getDel();
-        enabled = request.getEnabled() != null && request.getEnabled();
     }
 
     @Id
