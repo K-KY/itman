@@ -95,23 +95,6 @@ public class Employee extends BaseTimeEntity {
     //dto를 엔티티로 변경
     public static Employee from(EmployeeDto.Request request) {
         EmployeeDto.Request manager = request.getManager();
-        System.out.println("request.getJob().getName()3 = " + request.getJob().getName());
-        //manager가 null인 경우
-        if (manager == null) {
-            return Employee.builder()
-                    .empSeq(request.getEmpSeq())
-                    .empName(request.getEmpName())
-                    .empPhone(request.getEmpPhone())
-                    .empEmail(request.getEmpEmail())
-                    .empNum(request.getEmpNum())
-                    .depart(Depart.from(request.getDepartDto()))
-                    .del(request.getDel() != null && request.getDel())
-                    .job(Job.from(request.getJob()))
-                    .position(null)
-                    .build();
-        }
-
-        //manager가 null이 아닌경우
         Employee build = Employee.builder().empSeq(manager.getEmpSeq()).build();
         return Employee.builder()
                 .empSeq(request.getEmpSeq())
@@ -120,7 +103,7 @@ public class Employee extends BaseTimeEntity {
                 .empPhone(request.getEmpPhone())
                 .empEmail(request.getEmpEmail())
                 .depart(Depart.from(request.getDepartDto()))
-                .manager(build)
+                .manager(Optional.ofNullable(build).map(Employee::getManager).orElse(null))
                 .del(request.getDel() != null && request.getDel())
                 .job(Job.from(request.getJob()))
                 .position(null)
