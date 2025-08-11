@@ -17,6 +17,10 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     //del이 false인 행만 조회
     Page<Depart> findAllByDelFalse(Pageable pageable);
 
+    Page<Depart> findAllByDelFalseAndEnabledTrue(Pageable pageable);
+
+    Long countDepartByEnabledTrueAndDelFalse();
+
     //departSeq가 일치하는 행 조회
     Depart findByDepartSeqAndDelIsFalse(Integer departSeq);
 
@@ -24,6 +28,7 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     @Query("UPDATE Depart d SET d.del = :del WHERE d.departSeq = :seq")
     Integer updateDelByDepartSeq(@Param("seq") Integer departSeq, @Param("del") Boolean del);
 
-
     Long countDepartByDel(boolean del);
+
+    Long countDepartByDelAndEnabled(boolean del, boolean enabled);
 }
