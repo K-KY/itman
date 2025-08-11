@@ -6,8 +6,6 @@ import egovframework.itman.util.dto.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,30 +43,6 @@ public class DepartController {
     }
 
     /**
-     * <Table>
-     * <tr>
-     * <th>페이지</th>
-     * <th>페이지 사이즈</th>
-     * </tr>
-     * <tr>
-     * <td>
-     * Integer
-     * </td>
-     * <td>
-     * Integer
-     * </td>
-     * </tr>
-     * </Table>
-     */
-    @Deprecated
-    @GetMapping
-    public Page<DepartDto.Response> selectDepart(int page, int size) {
-        Pageable pageRequest = PageRequest.of(page - 1, size, Sort.by("departSeq").descending());
-        return departService.read(pageRequest);
-    }
-
-
-    /**
      * <table>
      *     <tr>
      *         <th>
@@ -95,20 +69,26 @@ public class DepartController {
      *     </tr>
      * </table>
      * */
-    @GetMapping("/sort")
-    public Page<DepartDto.Response> selectDepart(int page, int size, SortDto sort) {
-        PageRequest pageRequest = PageRequest.of(page, size, sort.getSorts());
-        return departService.read(pageRequest);
+    @GetMapping("/all")
+    public Page<DepartDto.Response> readAllDepart(int page, int size, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
+        return departService.readAll(pageRequest);
     }
 
-    @GetMapping("/count")
-    public Long departCount() {
-        return departService.countAll();
+    @GetMapping
+    public Page<DepartDto.Response> readDepart(int page, int size, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
+        return departService.read(pageRequest);
     }
 
     @GetMapping("/count/{del}")
     public Long departCount(@PathVariable boolean del) {
-        return departService.count(del);
+        return departService.countAll(del);
+    }
+
+    @GetMapping("/count")
+    public Long departCount() {
+        return departService.count();
     }
 
     @PatchMapping
