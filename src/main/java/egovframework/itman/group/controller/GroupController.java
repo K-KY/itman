@@ -1,6 +1,8 @@
 package egovframework.itman.group.controller;
 
+import egovframework.itman.group.dto.GroupInfoDto;
 import egovframework.itman.group.dto.ManageGroupDto;
+import egovframework.itman.group.model.service.ManageGroupBatisService;
 import egovframework.itman.group.model.service.interfaces.ManageGroupService;
 import egovframework.itman.user.model.entity.User;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +20,19 @@ public class GroupController {
     @Autowired
     private final ManageGroupService groupService;
 
+    @Autowired
+    private final ManageGroupBatisService groupBatisService;
+
     @GetMapping
     public Page<ManageGroupDto.Response> read(@AuthenticationPrincipal User user, Integer page, Integer size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
         return groupService.read(user, pageRequest);
 
+    }
+
+    @GetMapping("group/info")
+    public GroupInfoDto readGroup(@AuthenticationPrincipal User user, Long groupSeq) {
+        return groupBatisService.getGroupInfo(groupSeq);
     }
 
     @PostMapping
