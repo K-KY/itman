@@ -1,6 +1,7 @@
 package egovframework.itman.depart.model.entity;
 
 import egovframework.itman.depart.dto.DepartDto;
+import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/*
+* 여기서 그룹정보를 같이 줄지 말지 ***고민중***
+* */
 
 /**
  * 부서
@@ -45,6 +49,10 @@ public class Depart extends BaseTimeEntity {
     @Column(name = "description")
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "grp_seq")
+    private ManageGroup group;
+
     public DepartDto.Response toDto() {
         return DepartDto.Response.builder()
                 .seq(departSeq)
@@ -66,6 +74,7 @@ public class Depart extends BaseTimeEntity {
         return enabled;
     }
 
+    @Deprecated
     public static Depart from(DepartDto.Request request) {
         if (request == null) {
             return null;
