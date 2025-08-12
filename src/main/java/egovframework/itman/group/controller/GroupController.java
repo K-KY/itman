@@ -30,7 +30,7 @@ public class GroupController {
 
     }
 
-    @GetMapping("group/info")
+    @GetMapping("info")
     public GroupInfoDto readGroup(@AuthenticationPrincipal User user, Long groupSeq) {
         return groupBatisService.getGroupInfo(groupSeq);
     }
