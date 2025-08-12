@@ -8,6 +8,7 @@ public interface EmployeeService {
     EmployeeDto.Response insert(EmployeeDto.Request request);
 
     Page<EmployeeDto.Response> read(Pageable pageRequest);
+    Page<EmployeeDto.Response> read(Pageable pageRequest, Long groupSeq);
 
     EmployeeDto.Response update(EmployeeDto.Request request);
 

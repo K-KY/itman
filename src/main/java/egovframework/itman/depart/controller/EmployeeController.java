@@ -2,10 +2,12 @@ package egovframework.itman.depart.controller;
 
 import egovframework.itman.depart.dto.EmployeeDto;
 import egovframework.itman.depart.model.service.interfaces.EmployeeService;
+import egovframework.itman.user.model.entity.User;
 import egovframework.itman.util.dto.SortDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,11 +17,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping
-    public Page<EmployeeDto.Response> read(int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page - 1, size);
-        return employeeService.read(pageRequest);
-    }
+//    @GetMapping
+//    public Page<EmployeeDto.Response> read(int page, int size) {
+//        PageRequest pageRequest = PageRequest.of(page - 1, size);
+//        return employeeService.read(pageRequest);
+//    }
 
     /**
      * <table>
@@ -49,10 +51,11 @@ public class EmployeeController {
      * </table>
      * */
 
-    @GetMapping("sort")
-    public Page<EmployeeDto.Response> readSort(int page, int size, SortDto sort) {
+    @GetMapping
+    public Page<EmployeeDto.Response> read(int page, int size, Long groupSeq, SortDto sort,
+    @AuthenticationPrincipal User user) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
-        return employeeService.read(pageRequest);
+        return employeeService.read(pageRequest, groupSeq);
     }
 
     @PostMapping

@@ -21,6 +21,7 @@ public class EmployeeDto {
         private DepartDto.Request departDto;
         private Request manager;
         //직무 position
+        private Long groupSeq;
         private JobDto.Request job;
         private Boolean del;
         private LocalDateTime createdDate;

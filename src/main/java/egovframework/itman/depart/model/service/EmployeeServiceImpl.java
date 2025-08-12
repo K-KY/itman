@@ -28,6 +28,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAllByDelFalse(pageRequest).map(Employee::toDto);
     }
 
+    @Override
+    public Page<EmployeeDto.Response> read(Pageable pageRequest, Long groupSeq) {
+        return employeeRepository.findAllByDelFalseAndGroup_GroupSeq(pageRequest, groupSeq).map(Employee::toDto);
+    }
+
     @Transactional
     @Override
     public EmployeeDto.Response update(EmployeeDto.Request request) {

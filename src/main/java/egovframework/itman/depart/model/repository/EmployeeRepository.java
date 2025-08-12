@@ -16,6 +16,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Page<Employee> findAllByDelFalse(Pageable pageable);
 
+    Page<Employee> findAllByDelFalseAndGroup_GroupSeq(Pageable pageRequest, long groupSeq);
+
     Employee findByEmpSeqAndDelFalse(Integer empSeq);
 
     @Modifying
