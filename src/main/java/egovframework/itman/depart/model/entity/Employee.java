@@ -2,6 +2,7 @@ package egovframework.itman.depart.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import egovframework.itman.depart.dto.EmployeeDto;
+import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,11 +50,15 @@ public class Employee extends BaseTimeEntity {
 
     @JoinColumn(name = "job_seq")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Job job;//직무****************구현 해야함
+    private Job job;
 
     @JoinColumn(name = "position_seq")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Position position;//직급*****************구현 해야함
+    private Position position;
+
+    @JoinColumn(name = "grp_seq")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ManageGroup group;
 
     @Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
     private Boolean del = false;
