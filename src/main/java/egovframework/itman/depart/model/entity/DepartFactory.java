@@ -14,7 +14,7 @@ public class DepartFactory {
                 .description(depart.getDescription())
                 .del(depart.isDel())
                 .enabled(depart.isEnabled())
-                .group(ManageGroupFactory.toResponse(depart.getGroup()))
+//                .group(ManageGroupFactory.toResponse(depart.getGroup()))
                 .createdDate(depart.getCreatedDate())
                 .updatedDate(depart.getLastModifiedDate())
                 .build();
