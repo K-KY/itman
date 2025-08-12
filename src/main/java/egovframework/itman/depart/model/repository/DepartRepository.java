@@ -31,4 +31,6 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     Long countDepartByDel(boolean del);
 
     Long countDepartByDelAndEnabled(boolean del, boolean enabled);
+
+    Page<Depart> findAllByDelFalseAndGroup_GroupSeq(Pageable pageable, long groupSeq);
 }
