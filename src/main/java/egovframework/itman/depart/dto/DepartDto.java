@@ -40,10 +40,12 @@ public class DepartDto {
         return new DepartDto.Response.ResponseBuilder();
     }
 
+    @Deprecated
     public static Depart toEntity(DepartDto.Request request) {
         return Depart.from(request);
     }
 
+    @Deprecated
     public static Response from(Depart depart) {
         return Response.builder()
                 .seq(depart.getDepartSeq())
