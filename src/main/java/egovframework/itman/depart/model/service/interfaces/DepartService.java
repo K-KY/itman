@@ -12,6 +12,7 @@ public interface DepartService {
 
     DepartDto.Response update(DepartDto.Request departDto);
 
+    Page<DepartDto.Response> readAll(PageRequest pageRequest);
     Page<DepartDto.Response> readAll(PageRequest pageRequest, long groupSeq);
 
     boolean delete(DepartDto.Request departDto);
