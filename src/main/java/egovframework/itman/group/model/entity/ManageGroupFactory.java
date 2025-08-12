@@ -19,7 +19,7 @@ public class ManageGroupFactory {
                 .build();
     }
 
-    public ManageGroupDto.Response from(ManageGroup group) {
+    public ManageGroupDto.Response toResponse(ManageGroup group) {
         return ManageGroupDto.Response.builder()
                 .groupSeq(group.getGroupSeq())
                 .groupName(group.getGroupName())
