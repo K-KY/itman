@@ -23,6 +23,8 @@ public class ManageGroupFactory {
                 .groupName(group.getGroupName())
                 .user(UserDto.from(group.getUser()))
                 .del(group.isDel())
+                .createdDate(group.getCreatedDate())
+                .modifiedDate(group.getLastModifiedDate())
                 .build();
     }
 }

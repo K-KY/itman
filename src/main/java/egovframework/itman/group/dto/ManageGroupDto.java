@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 public class ManageGroupDto {
 
     @Getter
@@ -25,5 +27,7 @@ public class ManageGroupDto {
         private String groupName;
         private UserDto.Response user;
         private boolean del;
+        private LocalDateTime createdDate;
+        private LocalDateTime modifiedDate;
     }
 }
