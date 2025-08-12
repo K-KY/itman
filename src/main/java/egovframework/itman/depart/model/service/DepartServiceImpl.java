@@ -26,8 +26,8 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     @Transactional
     @Override
     public DepartDto.Response insert(DepartDto.Request dto) {
-
-        return DepartFactory.toResponse(repository.save(DepartDto.toEntity(dto)));
+        Depart depart = DepartFactory.toEntity(dto);
+        return DepartFactory.toResponse(repository.save(depart));
     }
 
     @Override
