@@ -4,13 +4,11 @@ import egovframework.itman.group.dto.ManageGroupDto;
 import egovframework.itman.user.dto.UserDto;
 import egovframework.itman.user.model.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Component
 public class ManageGroupFactory {
-    public ManageGroup of(UserDetails user, ManageGroupDto.Request dto) {
+    public static ManageGroup of(UserDetails user, ManageGroupDto.Request dto) {
         return ManageGroup.builder()
                 .groupSeq(dto.getGroupSeq())
                 .groupName(dto.getGroupName())
@@ -19,7 +17,7 @@ public class ManageGroupFactory {
                 .build();
     }
 
-    public ManageGroupDto.Response toResponse(ManageGroup group) {
+    public static ManageGroupDto.Response toResponse(ManageGroup group) {
         return ManageGroupDto.Response.builder()
                 .groupSeq(group.getGroupSeq())
                 .groupName(group.getGroupName())
