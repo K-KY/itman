@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GroupInfoDAO">
+
+    <resultMap id="groupInfo" type="egovframework.itman.group.dto.GroupInfoDto">
+<!--        <result property="asserts" column="assets"/>-->
+        <result property="groupSeq" column="grp_seq"/>
+        <result property="groupName" column="grp_name"/>
+        <result property="departs" column="departs"/>
+        <result property="employees" column="employees"/>
+    </resultMap>
+
+    <select id="selectGroupInfo" parameterType="java.lang.Long" resultMap="groupInfo">
+        SELECT
+            mg.grp_seq,
+            mg.grp_name,
+            -- depart 개수
+            (
+                SELECT COUNT(*)
+                FROM depart dp
+                WHERE dp.grp_seq = mg.grp_seq
+            ) AS departs
+                ,
+            -- employee 개수
+            (
+                SELECT COUNT(*)
+                FROM employee e
+                WHERE e.grp_seq = mg.grp_seq
+            ) AS employees
+        -- asset 개수
+--     ,
+-- (
+--         SELECT COUNT(*)
+--         FROM asset a
+--         WHERE a.grp_seq = mg.grp_seq
+--     ) AS assets
+        FROM manage_group mg
+        WHERE mg.grp_seq = #{grpSeq}
+    </select>
+</mapper>
