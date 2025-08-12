@@ -3,11 +3,11 @@ package egovframework.itman.depart.model.service;
 
 import egovframework.itman.depart.dto.DepartDto;
 import egovframework.itman.depart.model.entity.Depart;
+import egovframework.itman.depart.model.entity.DepartFactory;
 import egovframework.itman.depart.model.repository.DepartRepository;
 import egovframework.itman.depart.model.service.interfaces.DepartService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,11 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class DepartServiceImpl extends EgovAbstractMapper implements DepartService {
 
-    @Autowired
     private final DepartRepository repository;
 
     //TODO : 회원 인증, 그룹 인증 권한 인증
@@ -27,17 +26,18 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     @Transactional
     @Override
     public DepartDto.Response insert(DepartDto.Request dto) {
-        return repository.save(DepartDto.toEntity(dto)).toDto();
+
+        return DepartFactory.toResponse(repository.save(DepartDto.toEntity(dto)));
     }
 
     @Override
     public Page<DepartDto.Response> read(Pageable pageRequest) {
-        return repository.findAllByDelFalseAndEnabledTrue(pageRequest).map(Depart::toDto);
+        return repository.findAllByDelFalseAndEnabledTrue(pageRequest).map(DepartFactory::toResponse);
     }
 
     @Override
     public Page<DepartDto.Response> readAll(PageRequest pageRequest) {
-        return repository.findAllByDelFalse(pageRequest).map(Depart::toDto);
+        return repository.findAllByDelFalse(pageRequest).map(DepartFactory::toResponse);
     }
 
     @Transactional
@@ -45,7 +45,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     public DepartDto.Response update(DepartDto.Request departDto) {
         Depart depart = repository.findByDepartSeq(departDto.getSeq());
         depart.change(departDto);
-        return DepartDto.from(depart);
+        return DepartFactory.toResponse(depart);
     }
 
     @Transactional
@@ -69,7 +69,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     public DepartDto.Response updateEnable(DepartDto.Request departDto) {
         Depart depart = repository.findByDepartSeq(departDto.getSeq());
         depart.disable();
-        return depart.toDto();
+        return DepartFactory.toResponse(depart);
     }
 
 }
