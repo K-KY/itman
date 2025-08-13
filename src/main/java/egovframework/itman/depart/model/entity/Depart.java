@@ -21,14 +21,6 @@ import javax.persistence.*;
 @Builder(access = AccessLevel.PROTECTED)
 public class Depart extends BaseTimeEntity {
 
-    private Depart(DepartDto.Request request) {
-        this.departName = request.getName();
-        this.departSeq = request.getSeq();
-        this.description = request.getDescription();
-        this.del = request.getDel() != null && request.getDel();
-
-    }
-
     @Id
     @Column(name = "depart_seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -72,13 +64,4 @@ public class Depart extends BaseTimeEntity {
         this.enabled = !enabled;
         return enabled;
     }
-
-    @Deprecated
-    public static Depart from(DepartDto.Request request) {
-        if (request == null) {
-            return null;
-        }
-        return new Depart(request);
-    }
-
 }

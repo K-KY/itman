@@ -67,6 +67,7 @@ public class Employee extends BaseTimeEntity {
     @Column
     private Boolean enabled = true;
 
+    @Deprecated
     public EmployeeDto.Response toDto() {
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
@@ -84,6 +85,7 @@ public class Employee extends BaseTimeEntity {
                 .build();
     }
 
+    @Deprecated
     private EmployeeDto.Response toDto(Employee manager) {
         if (manager == null) {
             return null;
@@ -103,6 +105,7 @@ public class Employee extends BaseTimeEntity {
                 .build();
     }
 
+    @Deprecated
     //dto를 엔티티로 변경
     public static Employee from(EmployeeDto.Request request) {
         EmployeeDto.Request manager = request.getManager();
@@ -113,7 +116,7 @@ public class Employee extends BaseTimeEntity {
                 .empNum(request.getEmpNum())
                 .empPhone(request.getEmpPhone())
                 .empEmail(request.getEmpEmail())
-                .depart(Depart.from(request.getDepartDto()))
+                .depart(DepartFactory.toEntity(request.getDepartDto()))
                 .manager(Optional.ofNullable(build).map(Employee::getManager).orElse(null))
                 .del(request.getDel() != null && request.getDel())
                 .enabled(Optional.ofNullable(manager.getEnabled()).orElse(false))
@@ -129,7 +132,7 @@ public class Employee extends BaseTimeEntity {
         this.empNum = request.getEmpNum();
         this.empPhone = request.getEmpPhone();
         this.empName = request.getEmpName();
-        this.depart = Depart.from(request.getDepartDto());
+        this.depart = DepartFactory.toEntity(request.getDepartDto());
         this.manager = from(request);
         this.del = request.getDel();
         this.enabled = request.getEnabled();

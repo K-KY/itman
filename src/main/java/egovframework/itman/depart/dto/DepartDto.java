@@ -1,6 +1,5 @@
 package egovframework.itman.depart.dto;
 
-import egovframework.itman.depart.model.entity.Depart;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,22 +39,4 @@ public class DepartDto {
     public static DepartDto.Response.ResponseBuilder getResponse() {
         return new DepartDto.Response.ResponseBuilder();
     }
-
-    @Deprecated
-    public static Depart toEntity(DepartDto.Request request) {
-        return Depart.from(request);
-    }
-
-    @Deprecated
-    public static Response from(Depart depart) {
-        return Response.builder()
-                .seq(depart.getDepartSeq())
-                .name(depart.getDepartName())
-                .description(depart.getDescription())
-                .enabled(depart.isEnabled())
-                .createdDate(depart.getCreatedDate())
-                .updatedDate(depart.getLastModifiedDate())
-                .build();
-    }
-
 }
