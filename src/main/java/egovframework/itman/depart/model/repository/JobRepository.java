@@ -1,6 +1,5 @@
 package egovframework.itman.depart.model.repository;
 
-import com.ibm.icu.impl.Trie2;
 import egovframework.itman.depart.model.entity.Job;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +17,13 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
     Page<Job> findAllByDelFalseAndEnabledTrueAndGroup_GroupSeq(Pageable pageRequest, Long groupSeq);
 
 
-    Long countJobByDel(boolean del);
-
     Optional<Job> findByJobSeq(Integer jobSeq);
 
     Long countJobByDelFalseAndEnabledTrue();
+
+    Long countJobByDel(boolean del);
+
+    Long countJobByDelFalseAndEnabledTrueAndGroup_GroupSeq(Long groupSeq);
+//
+    Long countJobByDelAndGroup_GroupSeq(boolean del, Long groupSeq);
 }

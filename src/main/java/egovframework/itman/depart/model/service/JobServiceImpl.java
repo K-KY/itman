@@ -69,6 +69,16 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    public Long countAll(boolean del, Long groupSeq) {
+        return jobRepository.countJobByDelAndGroup_GroupSeq(del, groupSeq);
+    }
+
+    @Override
+    public Long count(Long groupSeq) {
+        return jobRepository.countJobByDelFalseAndEnabledTrueAndGroup_GroupSeq(groupSeq);
+    }
+
+    @Override
     @Transactional
     public JobDto.Response updateEnable(JobDto.Request dto) {
         Job job = jobRepository.findByJobSeq(dto.getSeq())

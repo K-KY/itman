@@ -43,12 +43,12 @@ public class JobController {
     }
 
     @GetMapping("/count/{del}")
-    public Long countJobs(@PathVariable boolean del) {
-        return jobService.countAll(del);
+    public Long countJobs(@PathVariable boolean del, Long groupSeq) {
+        return jobService.countAll(del, groupSeq);
     }
 
     @GetMapping("/count")
-    public Long countJobs() {
-        return jobService.count();
+    public Long countJobs(Long groupSeq) {
+        return jobService.count(groupSeq);
     }
 }

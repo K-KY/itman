@@ -4,7 +4,6 @@ package egovframework.itman.depart.model.service.interfaces;
 import egovframework.itman.depart.dto.JobDto;
 import egovframework.itman.depart.model.entity.Job;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 //TODO : 그룹 추가
 public interface JobService {
@@ -23,8 +22,10 @@ public interface JobService {
     boolean delete(JobDto.Request dto);
 
     Long countAll(boolean del);
+    Long countAll(boolean del, Long groupSeq);
 
     Long count();
+    Long count(Long groupSeq);
 
     JobDto.Response updateEnable(JobDto.Request dto);
 
