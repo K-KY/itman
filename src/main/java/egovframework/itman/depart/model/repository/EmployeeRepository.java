@@ -25,4 +25,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     Integer updateDelByEmpSeq(@Param("seq") Integer empSeq, @Param("del") Boolean del);
 
     Long countDepartByDelIs(boolean del);
+
+    Long countDepartByDelAndGroup_GroupSeq(boolean del, Long groupSeq);
+
+    Long countDepartByGroup_GroupSeq(Long groupSeq);
 }

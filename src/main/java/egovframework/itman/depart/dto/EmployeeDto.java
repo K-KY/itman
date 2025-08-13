@@ -24,6 +24,7 @@ public class EmployeeDto {
         private Long groupSeq;
         private JobDto.Request job;
         private Boolean del;
+        private Boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
 
@@ -33,7 +34,6 @@ public class EmployeeDto {
     @Builder
     public static class Response {
         private int empSeq;
-        private boolean del;
         private String empName;
         private String empNum;
         private String empPhone;
@@ -41,6 +41,8 @@ public class EmployeeDto {
         private DepartDto.Response departDto;
         private JobDto.Response job;
         private Response manager;
+        private Boolean del;
+        private Boolean enabled;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
 

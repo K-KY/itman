@@ -29,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+     //그룹조건 조회
     public Page<EmployeeDto.Response> read(Pageable pageRequest, Long groupSeq) {
         return employeeRepository.findAllByDelFalseAndGroup_GroupSeq(pageRequest, groupSeq).map(Employee::toDto);
     }
@@ -55,5 +56,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Long count() {
         return employeeRepository.count();
+    }
+
+    @Override
+    public Long count(boolean del, Long groupSeq) {
+        return employeeRepository.countDepartByDelAndGroup_GroupSeq(del, groupSeq);
+    }
+
+    @Override
+    public Long count(Long groupSeq) {
+        return employeeRepository.countDepartByGroup_GroupSeq(groupSeq);
     }
 }

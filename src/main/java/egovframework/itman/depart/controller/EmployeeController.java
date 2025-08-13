@@ -69,17 +69,17 @@ public class EmployeeController {
     }
 
     @DeleteMapping
-    public boolean delete(@RequestBody EmployeeDto.Request request) {
+    public boolean delete(@RequestBody EmployeeDto.Request request, @AuthenticationPrincipal User user) {
         return employeeService.delete(request.getEmpSeq());
     }
 
     @GetMapping("/count/{del}")
-    public Long count(@PathVariable boolean del) {
-        return employeeService.count(del);
+    public Long count(@PathVariable boolean del, Long groupSeq) {
+        return employeeService.count(del, groupSeq);
     }
 
     @GetMapping("/count")
-    public Long count() {
-        return employeeService.count();
+    public Long count(Long groupSeq) {
+        return employeeService.count(groupSeq);
     }
 }

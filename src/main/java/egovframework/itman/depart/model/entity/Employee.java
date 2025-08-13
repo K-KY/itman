@@ -3,6 +3,7 @@ package egovframework.itman.depart.model.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import egovframework.itman.depart.dto.EmployeeDto;
 import egovframework.itman.group.model.entity.ManageGroup;
+import egovframework.itman.group.model.entity.ManageGroupFactory;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,6 +64,9 @@ public class Employee extends BaseTimeEntity {
     @Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
     private Boolean del = false;
 
+    @Column
+    private Boolean enabled = true;
+
     public EmployeeDto.Response toDto() {
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
@@ -74,6 +78,7 @@ public class Employee extends BaseTimeEntity {
                 .job(Optional.ofNullable(job).map(Job::toDto).orElse(null))
                 .manager(Optional.ofNullable(manager).map(this::toDto).orElse(null))
                 .del(del)
+                .enabled(enabled)
                 .createdDate(super.getCreatedDate())
                 .updatedDate(super.getLastModifiedDate())
                 .build();
@@ -92,6 +97,7 @@ public class Employee extends BaseTimeEntity {
                 .empEmail(manager.getEmpEmail())
                 .departDto(manager.getDepart().toDto())
                 .del(manager.getDel())
+                .enabled(Optional.ofNullable(manager.getEnabled()).orElse(true))
                 .createdDate(manager.getCreatedDate())
                 .updatedDate(manager.getLastModifiedDate())
                 .build();
@@ -110,6 +116,8 @@ public class Employee extends BaseTimeEntity {
                 .depart(Depart.from(request.getDepartDto()))
                 .manager(Optional.ofNullable(build).map(Employee::getManager).orElse(null))
                 .del(request.getDel() != null && request.getDel())
+                .enabled(Optional.ofNullable(manager.getEnabled()).orElse(false))
+                .group(ManageGroupFactory.toCompactEntity(request.getGroupSeq()))
                 .job(Job.from(request.getJob()))
                 .position(null)
                 .build();
@@ -124,6 +132,7 @@ public class Employee extends BaseTimeEntity {
         this.depart = Depart.from(request.getDepartDto());
         this.manager = from(request);
         this.del = request.getDel();
+        this.enabled = request.getEnabled();
         this.job = null;
         this.position = null;
     }
