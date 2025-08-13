@@ -15,9 +15,11 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     Depart findByDepartSeq(Integer departSeq);
 
     //del이 false인 행만 조회
-    Page<Depart> findAllByDelFalse(Pageable pageable);
+    Page<Depart> findAllByDelFalse(Pageable pageable);//그룹 조건 없이 조회
+    Page<Depart> findAllByDelFalseAndGroup_GroupSeq(Pageable pageable, Long groupSeq);// 그룹 조건 조회
 
-    Page<Depart> findAllByDelFalseAndEnabledTrue(Pageable pageable);
+    Page<Depart> findAllByDelFalseAndEnabledTrue(Pageable pageable);//그룹 조건 없이 조회
+    Page<Depart> findAllByDelFalseAndEnabledTrueAndGroup_GroupSeq(Pageable pageable, Long groupSeq);// 그룹 조건 조회
 
     Long countDepartByEnabledTrueAndDelFalse();
 
@@ -32,5 +34,4 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
 
     Long countDepartByDelAndEnabled(boolean del, boolean enabled);
 
-    Page<Depart> findAllByDelFalseAndGroup_GroupSeq(Pageable pageable, long groupSeq);
 }
