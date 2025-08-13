@@ -30,21 +30,37 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
         return DepartFactory.toResponse(repository.save(depart));
     }
 
+    @Transactional
+    @Override
+    public DepartDto.Response insertGroup(DepartDto.Request dto) {
+        Depart depart = DepartFactory.toEntity(dto);
+        return DepartFactory.toResponse(repository.save(depart));
+    }
+
+//    @Transactional
+//    @Override
+//    public DepartDto.Response insert(DepartDto.Request dto, Long groupSeq) {
+//        Depart depart = DepartFactory.toEntity(dto, groupSeq);
+//        return DepartFactory.toResponse(repository.save(depart));
+//    }
+
     @Override
     public Page<DepartDto.Response> read(Pageable pageRequest) {
         return repository.findAllByDelFalseAndEnabledTrue(pageRequest).map(DepartFactory::toResponse);
     }
-
     @Override
-    public Page<DepartDto.Response> readAll(PageRequest pageRequest, Long groupSeq) {
-        return repository.findAllByDelFalseAndGroup_GroupSeq(pageRequest, groupSeq).map(DepartFactory::toResponse);
+    public Page<DepartDto.Response> read(Pageable pageRequest, Long groupSeq) {
+        return repository.findAllByDelFalseAndEnabledTrueAndGroup_GroupSeq(pageRequest, groupSeq).map(DepartFactory::toResponse);
     }
 
     @Override
     public Page<DepartDto.Response> readAll(PageRequest pageRequest) {
         return repository.findAllByDelFalse(pageRequest).map(DepartFactory::toResponse);
     }
-
+    @Override
+    public Page<DepartDto.Response> readAll(PageRequest pageRequest, Long groupSeq) {
+        return repository.findAllByDelFalseAndGroup_GroupSeq(pageRequest, groupSeq).map(DepartFactory::toResponse);
+    }
 
     @Transactional
     @Override
