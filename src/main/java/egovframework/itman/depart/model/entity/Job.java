@@ -2,6 +2,7 @@ package egovframework.itman.depart.model.entity;
 
 import egovframework.itman.depart.dto.JobDto;
 import egovframework.itman.group.model.entity.ManageGroup;
+import egovframework.itman.group.model.entity.ManageGroupFactory;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 
 /**
@@ -25,6 +27,8 @@ public class Job extends BaseTimeEntity {
         this.jobSeq = request.getSeq();
         this.jobName = request.getName();
         this.jobDescription = request.getDescription();
+        this.group = ManageGroupFactory.toCompactEntity(request.getGroupSeq());
+        this.enabled = Optional.ofNullable(request.getEnabled()).orElse(true);
         del = request.getDel() != null && request.getDel();
     }
 
@@ -54,10 +58,6 @@ public class Job extends BaseTimeEntity {
         return enabled;
     }
 
-    public void test() {
-        jobName = "테스트";
-    }
-
     public JobDto.Response toDto() {
         return JobDto.Response.builder()
                 .seq(jobSeq)
@@ -70,6 +70,7 @@ public class Job extends BaseTimeEntity {
                 .build();
     }
 
+    @Deprecated
     public static Job from(JobDto.Request dto) {
         return new Job(dto);
     }

@@ -20,6 +20,7 @@ public class JobDto {
         private String description;
         private Boolean del;
         private Boolean enabled;
+        private Long groupSeq;
         private LocalDateTime createdDate;
         private LocalDateTime updatedDate;
 
