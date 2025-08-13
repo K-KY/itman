@@ -3,9 +3,7 @@ package egovframework.itman.depart.model.entity;
 import egovframework.itman.depart.dto.DepartDto;
 import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -20,6 +18,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(access = AccessLevel.PROTECTED)
 public class Depart extends BaseTimeEntity {
 
     private Depart(DepartDto.Request request) {
