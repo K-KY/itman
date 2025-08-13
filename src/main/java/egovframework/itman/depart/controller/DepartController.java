@@ -39,7 +39,7 @@ public class DepartController {
      */
     @PostMapping
     public DepartDto.Response insert(@RequestBody DepartDto.Request departDto) {
-        return departService.insert(departDto);
+        return departService.insertGroup(departDto);
     }
 
     /**
@@ -76,9 +76,9 @@ public class DepartController {
     }
 
     @GetMapping
-    public Page<DepartDto.Response> readDepart(int page, int size, SortDto sort) {
+    public Page<DepartDto.Response> readDepart(int page, int size, Long groupSeq, SortDto sort) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
-        return departService.read(pageRequest);
+        return departService.read(pageRequest, groupSeq);
     }
 
     @GetMapping("/count/{del}")
