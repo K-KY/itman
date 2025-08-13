@@ -1,6 +1,7 @@
 package egovframework.itman.depart.model.entity;
 
 import egovframework.itman.depart.dto.JobDto;
+import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,6 +44,10 @@ public class Job extends BaseTimeEntity {
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled = true;
+
+    @ManyToOne
+    @JoinColumn(name = "grp_seq")
+    private ManageGroup group;
 
     public Boolean disable() {
         this.enabled = !enabled;

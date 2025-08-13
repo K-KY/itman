@@ -16,15 +16,15 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public Page<JobDto.Response> read(int page, int size, SortDto sort) {
+    public Page<JobDto.Response> read(int page, int size, Long groupSeq, SortDto sort) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
-        return jobService.read(pageRequest);
+        return jobService.read(pageRequest, groupSeq);
     }
 
     @GetMapping("/all")
-    public Page<JobDto.Response> readAll(int page, int size, SortDto sort) {
+    public Page<JobDto.Response> readAll(int page, int size, Long groupSeq, SortDto sort) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
-        return jobService.readAll(pageRequest);
+        return jobService.readAll(pageRequest, groupSeq);
     }
 
     @PostMapping

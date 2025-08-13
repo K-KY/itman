@@ -11,6 +11,12 @@ public interface JobService {
     Job insert(JobDto.Request dto);
 
     Page<JobDto.Response> read(Pageable pageRequest);
+    Page<JobDto.Response> read(Pageable pageRequest, Long groupSeq);
+
+    Page<JobDto.Response> readAll(Pageable pageRequest);
+    Page<JobDto.Response> readAll(Pageable pageRequest, Long groupSeq);
+
+
 
     Job update(JobDto.Request dto);
 
@@ -22,5 +28,4 @@ public interface JobService {
 
     JobDto.Response updateEnable(JobDto.Request dto);
 
-    Page<JobDto.Response> readAll(PageRequest pageRequest);
 }
