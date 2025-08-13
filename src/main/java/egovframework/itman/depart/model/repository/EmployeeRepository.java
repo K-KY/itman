@@ -24,9 +24,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Query("UPDATE Employee e SET e.del = :del WHERE e.empSeq = :seq")
     Integer updateDelByEmpSeq(@Param("seq") Integer empSeq, @Param("del") Boolean del);
 
-    Long countDepartByDelIs(boolean del);
+    Long countEmployeeByDelIs(boolean del);
 
-    Long countDepartByDelAndGroup_GroupSeq(boolean del, Long groupSeq);
+    Long countEmployeeByDelAndGroup_GroupSeq(boolean del, Long groupSeq);
 
-    Long countDepartByGroup_GroupSeq(Long groupSeq);
+    Long countEmployeeByGroup_GroupSeq(Long groupSeq);
 }

@@ -50,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Long count(boolean del) {
-        return employeeRepository.countDepartByDelIs(del);
+        return employeeRepository.countEmployeeByDelIs(del);
     }
 
     @Override
@@ -60,11 +60,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Long count(boolean del, Long groupSeq) {
-        return employeeRepository.countDepartByDelAndGroup_GroupSeq(del, groupSeq);
+        return employeeRepository.countEmployeeByDelAndGroup_GroupSeq(del, groupSeq);
     }
 
     @Override
     public Long count(Long groupSeq) {
-        return employeeRepository.countDepartByGroup_GroupSeq(groupSeq);
+        return employeeRepository.countEmployeeByGroup_GroupSeq(groupSeq);
     }
 }
