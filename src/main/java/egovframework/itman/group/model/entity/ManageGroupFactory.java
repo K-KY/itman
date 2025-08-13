@@ -27,4 +27,8 @@ public class ManageGroupFactory {
                 .modifiedDate(group.getLastModifiedDate())
                 .build();
     }
+
+    public static ManageGroup toCompactEntity(Long groupSeq) {
+        return ManageGroup.builder().groupSeq(groupSeq).build();
+    }
 }
