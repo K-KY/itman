@@ -21,8 +21,10 @@ public interface DepartService {
     boolean delete(DepartDto.Request departDto);
 
     Long countAll(boolean del);
+    Long countAll(boolean del, Long groupSeq);
 
     Long count();
+    Long count(Long groupSeq);
 
     DepartDto.Response updateEnable(DepartDto.Request departDto);
 }

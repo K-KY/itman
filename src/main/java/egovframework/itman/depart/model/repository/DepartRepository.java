@@ -31,7 +31,10 @@ public interface DepartRepository extends JpaRepository<Depart, Long> {
     Integer updateDelByDepartSeq(@Param("seq") Integer departSeq, @Param("del") Boolean del);
 
     Long countDepartByDel(boolean del);
-
     Long countDepartByDelAndEnabled(boolean del, boolean enabled);
 
+    Long countDepartByDelAndGroup_GroupSeq(boolean del, Long groupSeq);
+    Long countDepartByDelAndEnabledAndGroup_GroupSeq(boolean del, boolean enabled, Long groupSeq);
+
+    Long countDepartByEnabledTrueAndDelFalseAndGroup_GroupSeq(Long groupSeq);
 }

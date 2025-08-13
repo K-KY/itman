@@ -87,6 +87,16 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     }
 
     @Override
+    public Long countAll(boolean del, Long groupSeq) {
+        return repository.countDepartByDelAndGroup_GroupSeq(del, groupSeq);
+    }
+
+    @Override
+    public Long count(Long groupSeq) {
+        return repository.countDepartByEnabledTrueAndDelFalseAndGroup_GroupSeq(groupSeq);
+    }
+
+    @Override
     @Transactional
     public DepartDto.Response updateEnable(DepartDto.Request departDto) {
         Depart depart = repository.findByDepartSeq(departDto.getSeq());

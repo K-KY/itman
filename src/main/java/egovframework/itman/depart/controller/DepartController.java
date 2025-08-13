@@ -82,13 +82,13 @@ public class DepartController {
     }
 
     @GetMapping("/count/{del}")
-    public Long departCount(@PathVariable boolean del) {
-        return departService.countAll(del);
+    public Long departCount(@PathVariable boolean del, Long groupSeq) {
+        return departService.countAll(del, groupSeq);
     }
 
     @GetMapping("/count")
-    public Long departCount() {
-        return departService.count();
+    public Long departCount(Long groupSeq) {
+        return departService.count(groupSeq);
     }
 
     @PatchMapping
