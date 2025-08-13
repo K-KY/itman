@@ -36,7 +36,7 @@ public class DepartServiceImpl extends EgovAbstractMapper implements DepartServi
     }
 
     @Override
-    public Page<DepartDto.Response> readAll(PageRequest pageRequest, long groupSeq) {
+    public Page<DepartDto.Response> readAll(PageRequest pageRequest, Long groupSeq) {
         return repository.findAllByDelFalseAndGroup_GroupSeq(pageRequest, groupSeq).map(DepartFactory::toResponse);
     }
 

@@ -70,7 +70,7 @@ public class DepartController {
      * </table>
      * */
     @GetMapping("/all")
-    public Page<DepartDto.Response> readAllDepart(int page, int size, long groupSeq, SortDto sort) {
+    public Page<DepartDto.Response> readAllDepart(int page, int size, Long groupSeq, SortDto sort) {
         PageRequest pageRequest = PageRequest.of(page - 1, size, sort.getSorts());
         return departService.readAll(pageRequest, groupSeq);
     }
