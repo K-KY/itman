@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Entity
@@ -41,6 +42,7 @@ public class Asset extends BaseTimeEntity {
     private LocalDateTime acqDate;
 
     private Boolean enabled;
+    private Boolean del;
 
     public Asset change(AssetDto.Request assetDto) {
         this.assetName = assetDto.getAssetName();
@@ -50,6 +52,7 @@ public class Asset extends BaseTimeEntity {
         this.location = assetDto.getLocation();
         this.categories = assetDto.getCategories().stream()
                 .map(ac -> AssetFactory.toEntity(ac, this)).collect(Collectors.toList());
+        this.del = Optional.ofNullable(assetDto.getDel()).orElse(false);
         return this;
     }
 
