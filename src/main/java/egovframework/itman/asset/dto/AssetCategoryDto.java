@@ -13,7 +13,8 @@ public class AssetCategoryDto {
     @Builder
     public static class Request {
         private Long assetCategorySeq;
-        private Long categorySeq;   // Category FK
+//        private Long categorySeq;   // Category FK
+        private CategoryDto.Request category;
         private Long assetSeq;      // Asset FK
         private String tagColor; // RGB
         private Boolean del;
