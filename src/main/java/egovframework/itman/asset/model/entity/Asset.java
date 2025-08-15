@@ -1,0 +1,54 @@
+package egovframework.itman.asset.model.entity;
+
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import egovframework.itman.group.model.entity.ManageGroup;
+import egovframework.itman.util.entity.BaseTimeEntity;
+import lombok.*;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Getter
+@Builder(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public class Asset extends BaseTimeEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long assetSeq;
+
+    private String serialNumber;
+
+    @Column
+    private String assetName;
+
+    @ManyToOne
+    @JoinColumn(name = "grp_seq")
+    private ManageGroup group;
+
+    @OneToMany(mappedBy = "asset", cascade=CascadeType.ALL)
+    @JsonManagedReference
+    private List<AssetCategory> categories = new ArrayList<>();
+
+    private String location;
+
+    private LocalDateTime acqDate;
+
+    private Boolean enabled;
+
+
+    //자산 이미지
+    //자산 일련 번호 -> 생성조건 고민
+    //자산 명
+    //자산 분류 -> 다른 테이블로 분리
+    //자산 상태 -> 다른 테이블로 관리
+    //사용 직원 -> 교차 테이블로 분리
+    //자산 위치 -> 다른 테이블로 관리
+    //구매처 -> 다른 테이블로 관리
+    //최초 구매일
+    //가격
+}
