@@ -9,4 +9,6 @@ public interface AssetService {
     Asset create(AssetDto.Request assetDto);
 
     Page<Asset> read(Pageable pageable);
+
+    Asset update(AssetDto.Request assetDto);
 }

@@ -12,4 +12,5 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
     @EntityGraph(attributePaths = {"categories"})
     Page<Asset> findAll(Pageable pageable);
 
+    Asset findByAssetSeq(Long assetSeq);
 }
