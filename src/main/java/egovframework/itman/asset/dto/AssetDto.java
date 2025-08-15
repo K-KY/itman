@@ -19,6 +19,7 @@ public class AssetDto {
         private String location;
         private LocalDateTime acqDate;
         private Boolean enabled;
+        private Boolean del;
 
         // 카테고리 여러 개 추가 가능
         private List<AssetCategoryDto.Request> categories;
@@ -35,6 +36,7 @@ public class AssetDto {
         private String assetName;
         private String location;
         private Boolean enabled;
+        private Boolean del;
         // 카테고리 목록 포함
         private List<AssetCategoryDto.Response> categories;
 
