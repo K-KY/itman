@@ -11,14 +11,13 @@ public class CategoryFactory {
                 .categorySeq(dto.getCategorySeq())
                 .categoryName(dto.getCategoryName())
                 .group(ManageGroupFactory.toCompactEntity(dto.getGroupSeq()))
-                .tagColor("#323232")
+                .tagColor(dto.getTagColor())
                 .enabled(Optional.ofNullable(dto.getEnabled()).orElse(true))
                 .del(Optional.ofNullable(dto.getDel()).orElse(false))
                 .build();
     }
 
     public static CategoryDto.Response toDto(Category category) {
-        System.out.println("category.getCategoryName() = " + category.getCategoryName());
         return CategoryDto.Response.builder()
                 .categorySeq(category.getCategorySeq())
                 .categoryName(category.getCategoryName())
