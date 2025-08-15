@@ -25,7 +25,7 @@ public class AssetController {
     @GetMapping
     public Page<AssetDto.Response> read(int page, int size, Long groupSeq, SortDto sort) {
         PageRequest pageable = PageRequest.of(page - 1, size, sort.getSorts());
-        return assetService.read(pageable, groupSeq).map(AssetFactory::toDto);
+        return assetService.readEnabled(pageable, groupSeq).map(AssetFactory::toDto);
     }
 
     @PostMapping
