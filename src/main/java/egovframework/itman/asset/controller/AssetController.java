@@ -6,9 +6,10 @@ import egovframework.itman.asset.model.entity.AssetCategory;
 import egovframework.itman.asset.model.entity.AssetFactory;
 import egovframework.itman.asset.model.service.interfaces.AssetCategoryService;
 import egovframework.itman.asset.model.service.interfaces.AssetService;
+import egovframework.itman.util.dto.SortDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,9 @@ public class AssetController {
 
 
     @GetMapping
-    public Page<AssetDto.Response> read(Pageable pageable) {
-        return assetService.read(pageable).map(AssetFactory::toDto);
+    public Page<AssetDto.Response> read(int page, int size, Long groupSeq, SortDto sort) {
+        PageRequest pageable = PageRequest.of(page - 1, size, sort.getSorts());
+        return assetService.read(pageable, groupSeq).map(AssetFactory::toDto);
     }
 
     @PostMapping
