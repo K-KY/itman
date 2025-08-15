@@ -18,10 +18,10 @@ public class AssetCategory extends BaseTimeEntity {
     private Long assetCategorySeq;
 
     @JoinColumn(name = "category_seq")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "asset_seq")
     @JsonBackReference
     private Asset asset;

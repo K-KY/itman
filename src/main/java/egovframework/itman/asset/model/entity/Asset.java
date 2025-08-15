@@ -29,11 +29,11 @@ public class Asset extends BaseTimeEntity {
     @Column
     private String assetName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grp_seq")
     private ManageGroup group;
 
-    @OneToMany(mappedBy = "asset", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "asset", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<AssetCategory> categories = new ArrayList<>();
 
