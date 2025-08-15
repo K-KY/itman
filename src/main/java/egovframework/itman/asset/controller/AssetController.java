@@ -32,4 +32,9 @@ public class AssetController {
         List<AssetCategory> assetCategories = assetCategoryService.create(assetDto.getCategories(), asset);//그후 카테고리
         return AssetFactory.toDto(asset, assetCategories);//둘이 dto로 만들어서 반환
     }
+
+    @PatchMapping
+    public AssetDto.Response update(@RequestBody AssetDto.Request assetDto) {
+        return AssetFactory.toDto(assetService.update(assetDto));
+    }
 }

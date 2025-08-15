@@ -28,4 +28,13 @@ public class AssetServiceImpl implements AssetService {
     public Page<Asset> read(Pageable pageable) {
         return assetRepository.findAll(pageable);
     }
+
+    @Override
+    @Transactional
+    public Asset update(AssetDto.Request assetDto) {
+        Asset asset = assetRepository.findByAssetSeq(assetDto.getAssetSeq());
+        asset = asset.change(assetDto);
+        assetRepository.save(asset);
+        return asset;
+    }
 }
