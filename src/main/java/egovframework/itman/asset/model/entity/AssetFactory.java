@@ -33,7 +33,6 @@ public class AssetFactory {
     }
 
     public static AssetDto.Response toDto(Asset asset) {
-        System.out.println("asset.getCategories().get(0) = " + asset.getCategories());
         return AssetDto.Response.builder()
                 .assetSeq(asset.getAssetSeq())
                 .serialNumber(asset.getSerialNumber())
@@ -52,7 +51,7 @@ public class AssetFactory {
     public static AssetCategory toEntity(AssetCategoryDto.Request assetCategoryDto, Asset asset) {
         return AssetCategory.builder()
                 .assetCategorySeq(assetCategoryDto.getAssetCategorySeq())//자산 카테고리 번호 새로 생성하는경우 null
-                .category(CategoryFactory.toCompactEntity(assetCategoryDto.getCategorySeq()))//부모 카테고리
+                .category(CategoryFactory.toEntity(assetCategoryDto.getCategory()))//부모 카테고리
                 .asset(toCompactEntity(assetCategoryDto.getAssetSeq()))
                 .del(Optional.ofNullable(assetCategoryDto.getDel()).orElse(false))
                 .asset(asset)
