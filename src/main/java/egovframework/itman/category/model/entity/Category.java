@@ -17,7 +17,7 @@ public class Category extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categorySeq;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String categoryName;
 
     private String tagColor;
