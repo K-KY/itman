@@ -1,6 +1,8 @@
 package egovframework.itman.category.dto;
 
 import lombok.*;
+
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class CategoryDto {
@@ -17,6 +19,7 @@ public class CategoryDto {
         private String tagColor; //RGB
         private Boolean enabled;
         private Boolean del;
+        @NotNull
         private Long groupSeq;
     }
 

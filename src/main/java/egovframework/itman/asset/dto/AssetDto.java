@@ -1,6 +1,7 @@
 package egovframework.itman.asset.dto;
 
 import lombok.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class AssetDto {
         private Long assetSeq;
         private String serialNumber;
         private String assetName;
+        @NotNull
         private Long groupSeq; // ManageGroup FK
         private String location;
         private LocalDateTime acqDate;
