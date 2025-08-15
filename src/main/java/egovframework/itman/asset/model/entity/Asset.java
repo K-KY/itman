@@ -2,6 +2,7 @@ package egovframework.itman.asset.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import egovframework.itman.asset.dto.AssetDto;
 import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -26,7 +28,7 @@ public class Asset extends BaseTimeEntity {
     @Column
     private String assetName;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "grp_seq")
     private ManageGroup group;
 
@@ -39,6 +41,17 @@ public class Asset extends BaseTimeEntity {
     private LocalDateTime acqDate;
 
     private Boolean enabled;
+
+    public Asset change(AssetDto.Request assetDto) {
+        this.assetName = assetDto.getAssetName();
+        this.serialNumber = assetDto.getSerialNumber();
+        this.acqDate = assetDto.getAcqDate();
+        this.enabled = assetDto.getEnabled();
+        this.location = assetDto.getLocation();
+        this.categories = assetDto.getCategories().stream()
+                .map(ac -> AssetFactory.toEntity(ac, this)).collect(Collectors.toList());
+        return this;
+    }
 
 
     //자산 이미지
