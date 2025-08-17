@@ -1,5 +1,6 @@
 package egovframework.itman.category.model.entity;
 
+import egovframework.itman.category.dto.CategoryDto;
 import egovframework.itman.group.model.entity.ManageGroup;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.*;
@@ -17,7 +18,6 @@ public class Category extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categorySeq;
 
-    @Column(unique = true)
     private String categoryName;
 
     private String tagColor;
@@ -29,4 +29,11 @@ public class Category extends BaseTimeEntity {
     @JoinColumn(name = "grp_seq")
     @ManyToOne(fetch = FetchType.LAZY)
     private ManageGroup group;
+
+    public void change(CategoryDto.Request categoryDto) {
+        this.categoryName = categoryDto.getCategoryName();
+        this.tagColor = categoryDto.getTagColor();
+        this.enabled = categoryDto.getEnabled();
+        this.del = categoryDto.getDel();
+    }
 }
