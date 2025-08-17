@@ -53,7 +53,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         response.setContentType("text/plain; charset=UTF-8");
         response.getWriter().write("로그인 성공");
 
-        super.successfulAuthentication(request, response, chain, authResult);
+
+        //*************여기 다시 볼 것****************
+        //super.successfulAuthentication(request, response, chain, authResult);//기본 리다이렉트 경로 가 루트경로임
+        //*************여기 다시 볼 것****************
     }
 
     @Override
