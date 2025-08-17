@@ -8,7 +8,7 @@ import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +39,7 @@ public class Asset extends BaseTimeEntity {
 
     private String location;
 
-    private LocalDateTime acqDate;
+    private LocalDate acqDate;
 
     private Boolean enabled;
     private Boolean del;
