@@ -13,6 +13,7 @@ public class CategoryDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    @ToString
     public static class Request {
         private Long categorySeq;
         private String categoryName;
