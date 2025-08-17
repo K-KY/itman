@@ -30,6 +30,9 @@ public class AssetController {
 
     @PostMapping
     public AssetDto.Response create(@RequestBody AssetDto.Request assetDto) {
+        if (assetDto.getGroupSeq() == null) {
+            throw new IllegalArgumentException("그룹 번호 필수입니다.");
+        }
         Asset asset = assetService.create(assetDto);//자산 먼저 저장
         List<AssetCategory> assetCategories = assetCategoryService.create(assetDto.getCategories(), asset);//그후 카테고리
         return AssetFactory.toDto(asset, assetCategories);//둘이 dto로 만들어서 반환
