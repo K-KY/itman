@@ -17,6 +17,7 @@ public class AssetDto {
         private Long assetSeq;
         private String serialNumber;
         private String assetName;
+        private String imageUrl;
         @NotNull
         private Long groupSeq; // ManageGroup FK
         private String location;
@@ -36,6 +37,7 @@ public class AssetDto {
     public static class Response {
         private Long assetSeq;
         private String serialNumber;
+        private String imageUrl;
         private String assetName;
         private String location;
         private Boolean enabled;

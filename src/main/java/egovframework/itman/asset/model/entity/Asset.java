@@ -29,6 +29,9 @@ public class Asset extends BaseTimeEntity {
     @Column
     private String assetName;
 
+    @Column
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grp_seq")
     private ManageGroup group;
