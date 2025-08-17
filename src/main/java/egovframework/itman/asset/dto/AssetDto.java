@@ -2,6 +2,7 @@ package egovframework.itman.asset.dto;
 
 import lombok.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class AssetDto {
         @NotNull
         private Long groupSeq; // ManageGroup FK
         private String location;
-        private LocalDateTime acqDate;
+        private LocalDate acqDate;
         private Boolean enabled;
         private Boolean del;
 
@@ -42,7 +43,7 @@ public class AssetDto {
         // 카테고리 목록 포함
         private List<AssetCategoryDto.Response> categories;
 
-        private LocalDateTime acqDate;
+        private LocalDate acqDate;
         private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;
     }
