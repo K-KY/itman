@@ -1,0 +1,39 @@
+package egovframework.itman.state.model.entity;
+
+import egovframework.itman.group.model.entity.ManageGroup;
+import egovframework.itman.state.dto.StateDto;
+import egovframework.itman.util.entity.BaseTimeEntity;
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Builder(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public class State extends BaseTimeEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long stateSeq;
+
+    private String stateName;
+
+    private String tagColor;
+
+    private Boolean enabled;
+
+    private Boolean del;
+
+    @JoinColumn(name = "grp_seq")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ManageGroup group;
+
+    public void change(StateDto.Request stateDto) {
+        this.stateName = stateDto.getStateName();
+        this.tagColor = stateDto.getTagColor();
+        this.enabled = stateDto.getEnabled();
+        this.del = stateDto.getDel();
+    }
+}
