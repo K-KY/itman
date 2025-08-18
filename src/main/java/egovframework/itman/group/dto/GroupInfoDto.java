@@ -10,7 +10,7 @@ import lombok.Setter;
 public class GroupInfoDto {
     private Long groupSeq;
     private String groupName;
-//    private Integer assets;
+    private Integer assets;
     private Integer departs;
     private Integer employees;
 
@@ -20,7 +20,7 @@ public class GroupInfoDto {
         return "GroupInfoDto{" +
                 "groupSeq=" + groupSeq +
                 ", groupName='" + groupName +
-//                ", assets=" + assets +
+                ", assets=" + assets +
                 ", departs=" + departs +
                 ", employees=" + employees +
                 '}';

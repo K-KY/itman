@@ -1,6 +1,6 @@
 package egovframework.itman.asset.model.entity;
 
-import egovframework.itman.group.model.entity.ManageGroup;
+import egovframework.itman.state.model.entity.State;
 import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.*;
 
@@ -16,13 +16,9 @@ public class AssetState extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long assetStateId;
 
-    private String stateName;
-
-    private String tagColor;
-
-    private Boolean enabled;
-
-    @JoinColumn(name = "grp_seq")
+    @JoinColumn(name = "state_seq")
     @ManyToOne(fetch = FetchType.LAZY)
-    private ManageGroup group;
+    private State state;
+
+    private Boolean del;
 }

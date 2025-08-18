@@ -2,8 +2,10 @@ package egovframework.itman.asset.model.entity;
 
 import egovframework.itman.asset.dto.AssetCategoryDto;
 import egovframework.itman.asset.dto.AssetDto;
+import egovframework.itman.asset.dto.AssetStateDto;
 import egovframework.itman.category.model.entity.CategoryFactory;
 import egovframework.itman.group.model.entity.ManageGroupFactory;
+import egovframework.itman.state.model.entity.StateFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -103,6 +105,24 @@ public class AssetFactory {
                 .acqDate(asset.getAcqDate())
                 .createdDate(asset.getCreatedDate())
                 .modifiedDate(asset.getLastModifiedDate())
+                .build();
+    }
+
+    public static AssetStateDto.Response toDto(AssetState assetState) {
+        return AssetStateDto.Response.builder()
+                .assetStateId(assetState.getAssetStateId())
+                .state(StateFactory.toDto(assetState.getState()))
+                .del(assetState.getDel())
+                .modifiedDate(assetState.getLastModifiedDate())
+                .createdDate(assetState.getCreatedDate())
+                .build();
+    }
+
+    public static AssetState toEntity(AssetStateDto.Request assetStateDto) {
+        return AssetState.builder()
+                .assetStateId(assetStateDto.getAssetStateId())
+                .state(StateFactory.toEntity(assetStateDto.getState()))
+                .del(assetStateDto.getDel())
                 .build();
     }
 }

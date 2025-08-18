@@ -28,13 +28,11 @@
                 FROM employee e
                 WHERE e.grp_seq = mg.grp_seq
             ) AS employees
+                ,
         -- asset 개수
---     ,
--- (
---         SELECT COUNT(*)
---         FROM asset a
---         WHERE a.grp_seq = mg.grp_seq
---     ) AS assets
+            (SELECT COUNT(*)
+             FROM asset a
+             WHERE a.grp_seq = mg.grp_seq) AS assets
         FROM manage_group mg
         WHERE mg.grp_seq = #{grpSeq}
     </select>
