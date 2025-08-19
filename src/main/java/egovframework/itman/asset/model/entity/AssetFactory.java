@@ -110,7 +110,7 @@ public class AssetFactory {
 
     public static AssetStateDto.Response toDto(AssetState assetState) {
         return AssetStateDto.Response.builder()
-                .assetStateId(assetState.getAssetStateId())
+                .assetStateId(assetState.getAssetStateSeq())
                 .state(StateFactory.toDto(assetState.getState()))
                 .del(assetState.getDel())
                 .modifiedDate(assetState.getLastModifiedDate())
@@ -120,7 +120,7 @@ public class AssetFactory {
 
     public static AssetState toEntity(AssetStateDto.Request assetStateDto) {
         return AssetState.builder()
-                .assetStateId(assetStateDto.getAssetStateId())
+                .assetStateSeq(assetStateDto.getAssetStateId())
                 .state(StateFactory.toEntity(assetStateDto.getState()))
                 .del(assetStateDto.getDel())
                 .build();
