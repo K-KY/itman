@@ -9,5 +9,7 @@ import org.springframework.data.domain.Pageable;
 public interface AssetStateService {
     Page<AssetState> read(Pageable pageable, Long groupSeq, SortDto sort);
 
-    AssetStateDto.Response create(AssetStateDto.Request assetStateDto);
+    AssetState create(AssetStateDto.Request assetStateDto);
+
+    AssetState update(AssetStateDto.Request request);
 }

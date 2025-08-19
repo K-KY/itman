@@ -24,10 +24,10 @@ public class AssetStateController {
     }
     @PostMapping
     public AssetStateDto.Response create(@RequestBody AssetStateDto.Request assetStateDto) {
-        return assetStateService.create(assetStateDto);
+        return AssetFactory.toDto(assetStateService.create(assetStateDto));
     }
     @PatchMapping
     public AssetStateDto.Response update(@RequestBody AssetStateDto.Request request) {
-        return null;
+        return AssetFactory.toDto(assetStateService.update(request));
     }
 }

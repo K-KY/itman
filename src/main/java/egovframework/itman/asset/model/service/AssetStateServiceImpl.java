@@ -23,7 +23,14 @@ public class AssetStateServiceImpl implements AssetStateService {
     }
 
     @Override
-    public AssetStateDto.Response create(AssetStateDto.Request assetStateDto) {
-        return AssetFactory.toDto(assetStateRepository.save(AssetFactory.toEntity(assetStateDto)));
+    public AssetState create(AssetStateDto.Request assetStateDto) {
+        return assetStateRepository.save(AssetFactory.toEntity(assetStateDto));
+    }
+
+    @Override
+    public AssetState update(AssetStateDto.Request request) {
+        AssetState assetState = assetStateRepository.findByAssetStateSeq(request.getAssetStateId());
+        assetState.change(request);
+        return assetState;
     }
 }
