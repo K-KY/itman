@@ -9,10 +9,13 @@ import java.util.Optional;
 
 public interface StateService {
     Page<State> read(int page, int size, Long groupSeq, SortDto sort);
+    Page<State> readAll(int page, int size, Long groupSeq, SortDto sort);
 
     Optional<State> read(String name, Long groupSeq);//분류 중복 처리용
 
     State create(StateDto.Request categoryDto);
 
     State update(StateDto.Request categoryDto);
+
+    State updateEnable(StateDto.Request stateDto);
 }
