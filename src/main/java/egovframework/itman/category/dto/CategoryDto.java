@@ -2,7 +2,6 @@ package egovframework.itman.category.dto;
 
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class CategoryDto {
@@ -15,12 +14,11 @@ public class CategoryDto {
     @Builder
     @ToString
     public static class Request {
-        private Long categorySeq;
-        private String categoryName;
-        private String tagColor; //RGB
-        private Boolean enabled;
+        private Long seq;
+        private String name;
+        private String description;
         private Boolean del;
-        @NotNull
+        private Boolean enabled;
         private Long groupSeq;
     }
 
@@ -31,11 +29,12 @@ public class CategoryDto {
     @AllArgsConstructor
     @Builder
     public static class Response {
-        private Long categorySeq;
-        private String categoryName;
-        private String tagColor; //RGB
-        private Boolean enabled;
+        private Long seq;
+        private String name;
+        private String description;
         private Boolean del;
+        private Boolean enabled;
+        private Long groupSeq;
 
         private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;

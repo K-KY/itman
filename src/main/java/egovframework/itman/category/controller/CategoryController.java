@@ -17,7 +17,12 @@ public class CategoryController {
 
     @GetMapping
     public Page<CategoryDto.Response> read(int page, int size, Long groupSeq, SortDto sort) {
-        return categoryService.read(page, size, groupSeq, sort).map(CategoryFactory::toDto);
+        return categoryService.read(page - 1, size, groupSeq, sort).map(CategoryFactory::toDto);
+    }
+
+    @GetMapping("/all")
+    public Page<CategoryDto.Response> readAll(int page, int size, Long groupSeq, SortDto sort) {
+        return categoryService.read(page - 1, size, groupSeq, sort).map(CategoryFactory::toDto);
     }
 
     @PostMapping
@@ -28,5 +33,10 @@ public class CategoryController {
     @PatchMapping
     public CategoryDto.Response update(@RequestBody CategoryDto.Request categoryDto) {
         return CategoryFactory.toDto(categoryService.update(categoryDto));
+    }
+
+    @PostMapping("enable")
+    public CategoryDto.Response enable(@RequestBody CategoryDto.Request categoryDto) {
+        return CategoryFactory.toDto(categoryService.enable(categoryDto));
     }
 }

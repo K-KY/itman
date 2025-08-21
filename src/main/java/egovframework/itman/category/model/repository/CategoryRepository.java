@@ -18,4 +18,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Category findByCategoryName(String categoryName);
 
     Optional<Category> findByCategoryNameAndGroup_GroupSeq(String categoryName, Long groupGroupSeq);
+
+    Page<Category> findAllByDelFalseAndGroup_GroupSeq(Pageable pageable, Long groupSeq);
 }

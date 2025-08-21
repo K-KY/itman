@@ -8,10 +8,10 @@ import java.util.Optional;
 public class CategoryFactory {
     public static Category toEntity(CategoryDto.Request dto) {
         return Category.builder()
-                .categorySeq(dto.getCategorySeq())
-                .categoryName(dto.getCategoryName())
+                .categorySeq(dto.getSeq())
+                .categoryName(dto.getName())
                 .group(ManageGroupFactory.toCompactEntity(dto.getGroupSeq()))
-                .tagColor(dto.getTagColor())
+                .tagColor(dto.getDescription())
                 .enabled(Optional.ofNullable(dto.getEnabled()).orElse(true))
                 .del(Optional.ofNullable(dto.getDel()).orElse(false))
                 .build();
@@ -19,9 +19,9 @@ public class CategoryFactory {
 
     public static CategoryDto.Response toDto(Category category) {
         return CategoryDto.Response.builder()
-                .categorySeq(category.getCategorySeq())
-                .categoryName(category.getCategoryName())
-                .tagColor(category.getTagColor())
+                .seq(category.getCategorySeq())
+                .name(category.getCategoryName())
+                .description(category.getTagColor())
                 .enabled(category.getEnabled())
                 .del(category.getDel())
                 .createdDate(category.getCreatedDate())
