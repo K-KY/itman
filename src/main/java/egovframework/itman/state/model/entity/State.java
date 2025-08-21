@@ -6,6 +6,7 @@ import egovframework.itman.util.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -31,9 +32,13 @@ public class State extends BaseTimeEntity {
     private ManageGroup group;
 
     public void change(StateDto.Request stateDto) {
-        this.stateName = stateDto.getStateName();
-        this.tagColor = stateDto.getTagColor();
-        this.enabled = stateDto.getEnabled();
-        this.del = stateDto.getDel();
+        this.stateName = stateDto.getName();
+        this.tagColor = stateDto.getDescription();
+        this.enabled = Optional.ofNullable(stateDto.getEnabled()).orElse(true);
+        this.del = Optional.ofNullable(stateDto.getDel()).orElse(false);
+    }
+
+    public void changeEnable(StateDto.Request stateDto) {
+        this.enabled = Optional.ofNullable(stateDto.getEnabled()).orElse(true);
     }
 }
