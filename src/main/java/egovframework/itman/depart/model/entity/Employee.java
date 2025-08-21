@@ -29,6 +29,10 @@ public class Employee extends BaseTimeEntity {
     private Integer empSeq;
 
     @Column
+    private String imageUrl;
+
+
+    @Column
     private String empName;
 
     @Column
@@ -71,6 +75,7 @@ public class Employee extends BaseTimeEntity {
     public EmployeeDto.Response toDto() {
         return EmployeeDto.Response.builder()
                 .empSeq(empSeq)
+                .imageUrl(imageUrl)
                 .empName(empName)
                 .empNum(empNum)
                 .empPhone(empPhone)
@@ -93,6 +98,7 @@ public class Employee extends BaseTimeEntity {
 
         return EmployeeDto.Response.builder()
                 .empSeq(manager.getEmpSeq())
+                .imageUrl(manager.imageUrl)
                 .empName(manager.getEmpName())
                 .empNum(manager.getEmpNum())
                 .empPhone(manager.getEmpPhone())
@@ -112,6 +118,7 @@ public class Employee extends BaseTimeEntity {
         Employee build = Employee.builder().empSeq(manager.getEmpSeq()).build();
         return Employee.builder()
                 .empSeq(request.getEmpSeq())
+                .imageUrl(request.getImageUrl())
                 .empName(request.getEmpName())
                 .empNum(request.getEmpNum())
                 .empPhone(request.getEmpPhone())
@@ -129,6 +136,7 @@ public class Employee extends BaseTimeEntity {
 
     public void change(EmployeeDto.Request request) {
         this.empEmail = request.getEmpEmail();
+        this.imageUrl = request.getImageUrl();
         this.empNum = request.getEmpNum();
         this.empPhone = request.getEmpPhone();
         this.empName = request.getEmpName();

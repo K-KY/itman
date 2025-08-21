@@ -15,6 +15,7 @@ public class EmployeeDto {
     public static class Request {
         private int empSeq;
         private String empName;
+        private String imageUrl;
         private String empPhone;
         private String empEmail;
         private String empNum;
@@ -35,6 +36,7 @@ public class EmployeeDto {
     public static class Response {
         private int empSeq;
         private String empName;
+        private String imageUrl;
         private String empNum;
         private String empPhone;
         private String empEmail;
