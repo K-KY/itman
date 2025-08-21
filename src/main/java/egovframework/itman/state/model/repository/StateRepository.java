@@ -18,4 +18,6 @@ public interface StateRepository extends JpaRepository<State, Long> {
     State findByStateName(String categoryName);
 
     Optional<State> findByStateNameAndGroup_GroupSeq(String categoryName, Long groupGroupSeq);
+
+    Page<State> findAllByDelFalseAndGroup_GroupSeq(Pageable pageable, Long groupSeq);
 }
