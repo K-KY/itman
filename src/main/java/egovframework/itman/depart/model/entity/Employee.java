@@ -81,6 +81,7 @@ public class Employee extends BaseTimeEntity {
                 .empPhone(empPhone)
                 .empEmail(empEmail)
                 .departDto(Optional.ofNullable(depart).map(Depart::toDto).orElse(null))
+                .position(Optional.ofNullable(position).map(Position::toDto).orElse(null))
                 .job(Optional.ofNullable(job).map(Job::toDto).orElse(null))
                 .manager(Optional.ofNullable(manager).map(this::toDto).orElse(null))
                 .del(del)
@@ -104,6 +105,9 @@ public class Employee extends BaseTimeEntity {
                 .empPhone(manager.getEmpPhone())
                 .empEmail(manager.getEmpEmail())
                 .departDto(manager.getDepart().toDto())
+                .position(Optional.ofNullable(manager.getPosition())
+                        .map(Position::toDto)
+                        .orElse(null))
                 .del(manager.getDel())
                 .enabled(Optional.ofNullable(manager.getEnabled()).orElse(true))
                 .createdDate(manager.getCreatedDate())
@@ -115,7 +119,10 @@ public class Employee extends BaseTimeEntity {
     //dto를 엔티티로 변경
     public static Employee from(EmployeeDto.Request request) {
         EmployeeDto.Request manager = request.getManager();
-        Employee build = Employee.builder().empSeq(manager.getEmpSeq()).build();
+        Employee build = null;
+        if (manager != null) {
+            build = Employee.builder().empSeq(manager.getEmpSeq()).build();
+        }
         return Employee.builder()
                 .empSeq(request.getEmpSeq())
                 .imageUrl(request.getImageUrl())
@@ -123,13 +130,14 @@ public class Employee extends BaseTimeEntity {
                 .empNum(request.getEmpNum())
                 .empPhone(request.getEmpPhone())
                 .empEmail(request.getEmpEmail())
+                .position(Position.from(request.getPosition()))
                 .depart(DepartFactory.toEntity(request.getDepartDto()))
-                .manager(Optional.ofNullable(build).map(Employee::getManager).orElse(null))
+                .manager(from(request.getManager()))
                 .del(request.getDel() != null && request.getDel())
-                .enabled(Optional.ofNullable(manager.getEnabled()).orElse(false))
+                .enabled(Optional.ofNullable(request.getEnabled()).orElse(true))
                 .group(ManageGroupFactory.toCompactEntity(request.getGroupSeq()))
                 .job(Job.from(request.getJob()))
-                .position(null)
+                .position(Position.from(request.getPosition()))
                 .build();
 
     }
@@ -141,6 +149,7 @@ public class Employee extends BaseTimeEntity {
         this.empPhone = request.getEmpPhone();
         this.empName = request.getEmpName();
         this.depart = DepartFactory.toEntity(request.getDepartDto());
+        this.position = Position.from(request.getPosition());
         this.manager = from(request);
         this.del = request.getDel();
         this.enabled = request.getEnabled();

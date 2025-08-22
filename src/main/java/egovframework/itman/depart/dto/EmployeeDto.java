@@ -1,9 +1,6 @@
 package egovframework.itman.depart.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -24,6 +21,7 @@ public class EmployeeDto {
         //직무 position
         private Long groupSeq;
         private JobDto.Request job;
+        private PositionDto.Request position;
         private Boolean del;
         private Boolean enabled;
         private LocalDateTime createdDate;
@@ -41,6 +39,7 @@ public class EmployeeDto {
         private String empPhone;
         private String empEmail;
         private DepartDto.Response departDto;
+        private PositionDto.Response position;
         private JobDto.Response job;
         private Response manager;
         private Boolean del;

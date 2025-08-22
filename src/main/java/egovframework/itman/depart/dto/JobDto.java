@@ -1,10 +1,7 @@
 package egovframework.itman.depart.dto;
 
 import egovframework.itman.depart.model.entity.Job;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 

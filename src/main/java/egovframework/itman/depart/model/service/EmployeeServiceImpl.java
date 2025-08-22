@@ -1,6 +1,7 @@
 package egovframework.itman.depart.model.service;
 
 import egovframework.itman.depart.dto.EmployeeDto;
+import egovframework.itman.depart.model.entity.DepartFactory;
 import egovframework.itman.depart.model.entity.Employee;
 import egovframework.itman.depart.model.repository.EmployeeRepository;
 import egovframework.itman.depart.model.service.interfaces.EmployeeService;
@@ -20,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     @Override
     public EmployeeDto.Response insert(EmployeeDto.Request request) {
-        return employeeRepository.save(Employee.from(request)).toDto();
+        return employeeRepository.save(DepartFactory.toEntity(request)).toDto();
     }
 
     @Override

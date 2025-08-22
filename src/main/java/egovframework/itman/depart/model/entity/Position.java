@@ -44,6 +44,7 @@ public class Position extends BaseTimeEntity {
     private ManageGroup group;
 
 
+    @Deprecated
     public PositionDto.Response toDto() {
         return PositionDto.Response.builder()
                 .seq(this.positionSeq)
