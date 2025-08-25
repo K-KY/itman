@@ -6,7 +6,11 @@ import egovframework.itman.asset.model.entity.AssetCategory;
 import egovframework.itman.asset.model.entity.AssetFactory;
 import egovframework.itman.asset.model.repository.AssetCategoryRepository;
 import egovframework.itman.asset.model.service.interfaces.AssetCategoryService;
+import egovframework.itman.util.dto.SortDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,5 +28,10 @@ public class AssetCategoryServiceImpl implements AssetCategoryService {
                 .map(ac -> AssetFactory.toEntity(ac, asset))
                 .collect(Collectors.toList());
         return assetCategoryRepository.saveAll(collect);
+    }
+
+    public Page<AssetCategory> readAll(int page, int size, SortDto sort, Long groupSeq) {
+        Pageable pageable = PageRequest.of(page, size, sort.getSorts());
+        return assetCategoryRepository.findAllByCategory_GroupGroupSeq(pageable, groupSeq);
     }
 }
