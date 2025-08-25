@@ -20,6 +20,11 @@ public class CategoryController {
         return categoryService.read(page - 1, size, groupSeq, sort).map(CategoryFactory::toDto);
     }
 
+    @GetMapping("/keyword")
+    public Page<CategoryDto.Response> read(int page, int size, Long groupSeq, String keyword, SortDto sort) {
+        return categoryService.read(page, size, groupSeq, keyword, sort).map(CategoryFactory::toDto);
+    }
+
     @GetMapping("/all")
     public Page<CategoryDto.Response> readAll(int page, int size, Long groupSeq, SortDto sort) {
         return categoryService.read(page - 1, size, groupSeq, sort).map(CategoryFactory::toDto);

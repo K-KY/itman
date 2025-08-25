@@ -18,4 +18,6 @@ public interface CategoryService {
     Category update(CategoryDto.Request categoryDto);
 
     Category enable(CategoryDto.Request categoryDto);
+
+    Page<Category> read(int page, int size, Long groupSeq, String keyword, SortDto sort);
 }

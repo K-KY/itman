@@ -74,4 +74,9 @@ public class CategoryServiceImpl implements CategoryService {
         return read;
     }
 
+    @Override
+    public Page<Category> read(int page, int size, Long groupSeq, String keyword, SortDto sort) {
+        PageRequest pageRequest = PageRequest.of(page, size, sort.getSorts());
+        return categoryRepository.findAllByDelFalseAndGroup_GroupSeqAndCategoryNameLike(groupSeq, keyword, pageRequest);
+    }
 }
