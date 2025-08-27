@@ -17,7 +17,7 @@ class RedisRepositoryTest {
     void test() {
         UserDto.Request build = UserDto.Request.builder()
                 .id(UUID.randomUUID())
-                .userName("테스트2")
+                .username("테스트2")
                 .userPassword("테스트2")
                 .build();
         userVerifyRepository.save(build);

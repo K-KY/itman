@@ -25,10 +25,10 @@ public class LoginServiceImpl implements LoginService {
         String password = passwordEncoder.encode(request.getUserPassword());
         try {
             User build = User.builder()
-                    .userName(request.getUserName())
+                    .userName(request.getUsername())
                     .userEmail(request.getUserEmail())
                     .userPassword(password)
-                    .userName(request.getUserName())
+                    .userName(request.getUsername())
                     .del(Boolean.FALSE)
                     .userRole("ROLE_USER")
                     .build();
