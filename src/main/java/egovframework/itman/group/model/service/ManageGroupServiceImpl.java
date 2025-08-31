@@ -43,4 +43,14 @@ public class ManageGroupServiceImpl implements ManageGroupService {
         }
         throw new IllegalArgumentException("사용자가 소유한 그룹이 아닙니다.") ;
     }
+
+    @Override
+    public Long getCountAll(Long groupSeq) {
+        return groupRepository.countAllByGroupSeq(groupSeq);
+    }
+
+    @Override
+    public Long getCountAllAndDelFalse(Long groupSeq, Boolean del) {
+        return groupRepository.countAllByGroupSeqAndDel(groupSeq, del);
+    }
 }

@@ -12,4 +12,8 @@ public interface ManageGroupService {
     ManageGroupDto.Response create(UserDetails user, ManageGroupDto.Request dto);
 
     ManageGroupDto.Response update(UserDetails user, ManageGroupDto.Request dto);
+
+    Long getCountAll(Long groupSeq);
+
+    Long getCountAllAndDelFalse(Long groupSeq, Boolean del);
 }

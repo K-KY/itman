@@ -3,9 +3,11 @@ package egovframework.itman.category.controller;
 import egovframework.itman.category.dto.CategoryDto;
 import egovframework.itman.category.model.entity.CategoryFactory;
 import egovframework.itman.category.model.service.interfaces.CategoryService;
+import egovframework.itman.user.model.entity.User;
 import egovframework.itman.util.dto.SortDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -43,5 +45,15 @@ public class CategoryController {
     @PostMapping("enable")
     public CategoryDto.Response enable(@RequestBody CategoryDto.Request categoryDto) {
         return CategoryFactory.toDto(categoryService.enable(categoryDto));
+    }
+
+    @GetMapping("count")
+    public Long count(@AuthenticationPrincipal User user, Long groupSeq) {
+        return 0L;
+    }
+
+    @GetMapping("count/{del}")
+    public Long count(@AuthenticationPrincipal User user, Long groupSeq, @PathVariable Boolean del) {
+        return 0L;
     }
 }

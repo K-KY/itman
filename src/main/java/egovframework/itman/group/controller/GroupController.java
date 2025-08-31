@@ -44,4 +44,14 @@ public class GroupController {
     public ManageGroupDto.Response update(@AuthenticationPrincipal User user, @RequestBody ManageGroupDto.Request dto) {
         return groupService.update(user, dto);
     }
+
+    @GetMapping("count")
+    public Long count(@AuthenticationPrincipal User user, Long groupSeq) {
+        return groupService.getCountAll(groupSeq);
+    }
+
+    @GetMapping("count/{del}")
+    public Long count(@AuthenticationPrincipal User user, Long groupSeq, @PathVariable Boolean del) {
+        return groupService.getCountAllAndDelFalse(groupSeq, del);
+    }
 }
