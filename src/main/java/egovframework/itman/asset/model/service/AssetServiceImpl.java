@@ -26,7 +26,7 @@ public class AssetServiceImpl implements AssetService {
     @Override
     @Transactional(readOnly = true)
     public Page<Asset> readEnabled(Pageable pageable, Long groupSeq) {
-        return assetRepository.findAllByEnabledTrueAndGroup_GroupSeq(pageable, groupSeq);
+        return assetRepository.findAllByEnabledTrueAndDelFalseAndGroup_GroupSeq(pageable, groupSeq);
     }
 
     @Override
