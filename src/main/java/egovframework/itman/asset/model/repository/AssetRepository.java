@@ -19,4 +19,6 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
     Page<Asset> findAllByDelTrue(Pageable pageable, Long groupSeq);
 
     Page<Asset> findAllByEnabledTrueAndDelFalseAndGroup_GroupSeq(Pageable pageable, Long groupSeq);
+
+    Asset findByAssetSeqAndGroup_GroupSeq(Long assetSeq, Long groupGroupSeq);
 }

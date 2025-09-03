@@ -28,6 +28,11 @@ public class AssetController {
         return assetService.readEnabled(pageable, groupSeq).map(AssetFactory::toDto);
     }
 
+    @GetMapping("detail")
+    public AssetDto.Response readDetail(Long assetSeq, Long groupSeq) {
+        return AssetFactory.toDto(assetService.read(assetSeq, groupSeq));
+    }
+
     @PostMapping
     public AssetDto.Response create(@RequestBody AssetDto.Request assetDto) {
         if (assetDto.getGroupSeq() == null) {

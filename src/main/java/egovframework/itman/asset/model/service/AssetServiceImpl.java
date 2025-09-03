@@ -49,4 +49,9 @@ public class AssetServiceImpl implements AssetService {
         assetRepository.save(asset);
         return asset;
     }
+
+    @Override
+    public Asset read(Long assetSeq, Long groupSeq) {
+        return assetRepository.findByAssetSeqAndGroup_GroupSeq(assetSeq, groupSeq);
+    }
 }

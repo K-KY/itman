@@ -26,6 +26,7 @@ public class AssetFactory {
                 .location(assetDto.getLocation())
                 .acqDate(assetDto.getAcqDate())
                 .enabled(assetDto.getEnabled())
+                .del(Optional.ofNullable(assetDto.getDel()).orElse(false))
                 .build();
     }
 
@@ -49,6 +50,8 @@ public class AssetFactory {
                                 .map(AssetFactory::toDto)
                                 .collect(Collectors.toList())
                 )
+                .createdDate(asset.getCreatedDate())
+                .updatedDate(asset.getLastModifiedDate())
                 .build();
     }
 
@@ -104,7 +107,7 @@ public class AssetFactory {
                 )
                 .acqDate(asset.getAcqDate())
                 .createdDate(asset.getCreatedDate())
-                .modifiedDate(asset.getLastModifiedDate())
+                .updatedDate(asset.getLastModifiedDate())
                 .build();
     }
 

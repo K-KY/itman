@@ -13,4 +13,6 @@ public interface AssetService {
     Page<Asset> readDeleted(Pageable pageable, Long groupSeq);
 
     Asset update(AssetDto.Request assetDto);
+
+    Asset read(Long assetSeq, Long groupSeq);
 }
