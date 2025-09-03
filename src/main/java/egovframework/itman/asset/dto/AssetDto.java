@@ -47,6 +47,6 @@ public class AssetDto {
 
         private LocalDate acqDate;
         private LocalDateTime createdDate;
-        private LocalDateTime modifiedDate;
+        private LocalDateTime updatedDate;
     }
 }
