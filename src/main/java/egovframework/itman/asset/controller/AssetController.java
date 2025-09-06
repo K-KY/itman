@@ -47,4 +47,10 @@ public class AssetController {
     public AssetDto.Response update(@RequestBody AssetDto.Request assetDto) {
         return AssetFactory.toDto(assetService.update(assetDto));
     }
+
+    @GetMapping("/keyword")
+    public Page<AssetDto.Response> readKeyword(int page, int size, Long groupSeq, String keyword, SortDto sort) {
+        PageRequest pageable = PageRequest.of(page - 1, size, sort.getSorts());
+        return assetService.read(pageable, groupSeq, keyword).map(AssetFactory::toDto);
+    }
 }

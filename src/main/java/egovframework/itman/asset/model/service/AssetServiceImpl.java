@@ -54,4 +54,9 @@ public class AssetServiceImpl implements AssetService {
     public Asset read(Long assetSeq, Long groupSeq) {
         return assetRepository.findByAssetSeqAndGroup_GroupSeq(assetSeq, groupSeq);
     }
+
+    @Override
+    public Page<Asset> read(Pageable pageable, Long groupSeq, String keyword) {
+        return assetRepository.findAllByEnabledTrueAndDelFalseAndGroup_GroupSeqAndAssetNameContainingIgnoreCase(pageable, groupSeq, keyword);
+    }
 }

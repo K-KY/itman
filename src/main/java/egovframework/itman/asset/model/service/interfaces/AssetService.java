@@ -15,4 +15,6 @@ public interface AssetService {
     Asset update(AssetDto.Request assetDto);
 
     Asset read(Long assetSeq, Long groupSeq);
+
+    Page<Asset> read(Pageable pageable, Long groupSeq, String keyword);
 }
