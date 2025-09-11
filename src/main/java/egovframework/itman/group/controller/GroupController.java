@@ -2,6 +2,7 @@ package egovframework.itman.group.controller;
 
 import egovframework.itman.group.dto.GroupInfoDto;
 import egovframework.itman.group.dto.ManageGroupDto;
+import egovframework.itman.group.model.entity.ManageGroupFactory;
 import egovframework.itman.group.model.service.ManageGroupBatisService;
 import egovframework.itman.group.model.service.interfaces.ManageGroupService;
 import egovframework.itman.user.model.entity.User;
@@ -26,7 +27,7 @@ public class GroupController {
     @GetMapping
     public Page<ManageGroupDto.Response> read(@AuthenticationPrincipal User user, Integer page, Integer size) {
         PageRequest pageRequest = PageRequest.of(page - 1, size);
-        return groupService.read(user, pageRequest);
+        return groupService.read(user, pageRequest).map(ManageGroupFactory::toResponse);
 
     }
 

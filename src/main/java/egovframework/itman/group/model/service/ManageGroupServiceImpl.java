@@ -22,8 +22,8 @@ public class ManageGroupServiceImpl implements ManageGroupService {
 
 
     @Override
-    public Page<ManageGroupDto.Response> read(UserDetails user, PageRequest pageRequest) {
-        return groupRepository.findAllByDelFalseAndUser(user, pageRequest).map(ManageGroupFactory::toResponse);
+    public Page<ManageGroup> read(UserDetails user, PageRequest pageRequest) {
+        return groupRepository.findAllByDelFalseAndUser(user, pageRequest);
     }
 
     @Override
